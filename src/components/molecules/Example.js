@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 
 const Example = ({
     title={title},
@@ -8,11 +8,14 @@ const Example = ({
     titlecolor={titlecolor},
     subtitlecolor={subtitlecolor}
 }) =>{
+
+    const [bingoarray, setBingoarray] = useState([{value:"안녕"},{value:"안녕"}]);
+
     return(
         <All>
             <Exbox backcolor={backcolor}>
-            <Title titlecolor={titlecolor}>{title}</Title>
-            <Subtitle subtitlecolor={subtitlecolor}>{subtitle}</Subtitle>
+                <Title titlecolor={titlecolor}>{title}</Title>
+                <Subtitle subtitlecolor={subtitlecolor}>{subtitle}</Subtitle>
             </Exbox>
         </All>
     );

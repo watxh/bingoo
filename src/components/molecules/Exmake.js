@@ -104,7 +104,6 @@ const Exmake = ({
                         빙고 내용 추가
                     </Sectionname>
                 </InsectionB>
-
                 
             </Infosection>
         </All>
