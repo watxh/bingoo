@@ -2,11 +2,18 @@ import styled, {css} from "styled-components";
 import React, { Component } from "react";
 
 const Example = ({
-    backcolor={backcolor}
+    title={title},
+    subtitle={subtitle},
+    backcolor={backcolor},
+    titlecolor={titlecolor},
+    subtitlecolor={subtitlecolor}
 }) =>{
     return(
         <All>
-            <Exbox backcolor={backcolor}/>
+            <Exbox backcolor={backcolor}>
+            <Title titlecolor={titlecolor}>{title}</Title>
+            <Subtitle subtitlecolor={subtitlecolor}>{subtitle}</Subtitle>
+            </Exbox>
         </All>
     );
 }
@@ -28,6 +35,27 @@ const Exbox = styled.div`
     height:640px;
     margin-left:-187px;
     margin-top:-285px;
+    text-align:center;
 `;
+
+const Title = styled.div`
+    margin-top:50px;
+    font-size:40px;
+    font-family: 'Jua', sans-serif;
+    color:#ffffff;
+    ${({titlecolor}) => titlecolor && css`
+        color:${titlecolor.hex};
+  ` }
+`
+
+const Subtitle = styled.div`
+    margin-top:10px;
+    font-size:30px;
+    font-family: 'Nanum Pen Script', cursive;
+    color:#ffffff;
+    ${({subtitlecolor}) => subtitlecolor && css`
+        color:${subtitlecolor.hex};
+  ` }
+`
 
 export default Example;

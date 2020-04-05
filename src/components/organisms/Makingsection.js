@@ -6,17 +6,38 @@ import Exmake from "../molecules/Exmake"
 
 const Makingsection = () =>{
 
-    const [backcolor, setBackcolor] = useState("#000000");
+    const [title, setTitle] = useState("");
+    const [subtitle, setSubtitle] = useState("");
 
-    const changecolor = (color) =>{
+    const [backcolor, setBackcolor] = useState("#000000");
+    const [titlecolor, setTitlecolor] = useState("#ffffff");
+    const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
+
+    const changetitle = (name) =>{
+        setTitle(name);
+    }
+
+    const changesubtitle = (name) =>{
+        setSubtitle(name);
+    }
+
+    const changebackcolor = (color) =>{
         setBackcolor(color);
+    }
+
+    const changetitlecolor = (color) =>{
+        setTitlecolor(color);
+    }
+
+    const changesubtitlecolor = (color) =>{
+        setSubtitlecolor(color);
     }
 
     return(
         <>
-        <Example backcolor={backcolor}/>
+        <Example title={title} subtitle={subtitle} backcolor={backcolor} titlecolor={titlecolor} subtitlecolor={subtitlecolor}/>
         <Centerline></Centerline>
-        <Exmake changebackcolor={changecolor}/>
+        <Exmake changetitle={changetitle} changesubtitle={changesubtitle} changebackcolor={changebackcolor} changetitlecolor={changetitlecolor} changesubtitlecolor={changesubtitlecolor}/>
         </>
     );
 }
