@@ -1,5 +1,6 @@
 import styled, {css} from "styled-components";
 import React, { Component, useState } from "react";
+import Bingobox from "../atoms/Bingobox"
 
 const Example = ({
     title={title},
@@ -9,13 +10,18 @@ const Example = ({
     subtitlecolor={subtitlecolor}
 }) =>{
 
-    const [bingoarray, setBingoarray] = useState([{value:"안녕"},{value:"안녕"}]);
+    const [bingoarray, setBingoarray] = useState([{value:"안녕"},{value:"안asasddasdasd녕"},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]);
 
     return(
         <All>
             <Exbox backcolor={backcolor}>
                 <Title titlecolor={titlecolor}>{title}</Title>
                 <Subtitle subtitlecolor={subtitlecolor}>{subtitle}</Subtitle>
+                <Bingoboxsection>
+                    {bingoarray.map(({value})=>(
+                        <Bingobox>{value}</Bingobox>
+                    ))}
+                </Bingoboxsection>
             </Exbox>
         </All>
     );
@@ -39,10 +45,12 @@ const Exbox = styled.div`
     margin-left:-187px;
     margin-top:-285px;
     text-align:center;
+    align-items:center;
+    border-radius:10px;
 `;
 
 const Title = styled.div`
-    margin-top:50px;
+    margin-top:40px;
     font-size:40px;
     font-family: 'Jua', sans-serif;
     color:#ffffff;
@@ -60,5 +68,17 @@ const Subtitle = styled.div`
         color:${subtitlecolor.hex};
   ` }
 `
+
+const Bingoboxsection = styled.div`
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+    top:30px;
+    width:355px;
+    height:355px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+`;
 
 export default Example;
