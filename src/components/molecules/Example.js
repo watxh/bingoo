@@ -11,7 +11,7 @@ const Example = ({
     bingoarray={bingoarray}
 }) =>{
     return(
-        <All>{console.log(bingoarray)}
+        <All>
             <Exbox backcolor={backcolor}>
                 <Title titlecolor={titlecolor}>{title}</Title>
                 <Subtitle subtitlecolor={subtitlecolor}>{subtitle}</Subtitle>

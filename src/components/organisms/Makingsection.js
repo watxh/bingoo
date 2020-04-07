@@ -13,7 +13,7 @@ const Makingsection = () =>{
     const [titlecolor, setTitlecolor] = useState("#ffffff");
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
 
-    const [bingoarray, setBingoarray] = useState([{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]);
+    const [bingoarray, setBingoarray] = useState([{},{},{},{},{},{value:"안녕"},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]);
 
     const changetitle = (name) =>{
         setTitle(name);

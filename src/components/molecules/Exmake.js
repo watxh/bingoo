@@ -72,10 +72,12 @@ const Exmake = ({
     }
 
     const changerownum = (e) =>{
+        setContents(JSON.stringify(bingoarray[(columnnum-1)*5+(rownum-1)]));
         setRownum(e.target.value);
     }
 
     const changecolumnnum = (e)=>{
+        setContents(JSON.stringify(bingoarray[(columnnum-1)*5+(rownum-1)]));
         setColumnnum(e.target.value);
     }
 
