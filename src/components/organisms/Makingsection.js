@@ -13,12 +13,14 @@ const Makingsection = () =>{
     const [titlecolor, setTitlecolor] = useState("#ffffff");
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
 
+    const [bingoarray, setBingoarray] = useState([{value:"dkdk"},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]);
+
     const changetitle = (name) =>{
         setTitle(name);
     }
 
     const changesubtitle = (name) =>{
-        setSubtitle(name);
+        setSubtitle(name);  
     }
 
     const changebackcolor = (color) =>{
@@ -33,11 +35,19 @@ const Makingsection = () =>{
         setSubtitlecolor(color);
     }
 
+    const changebingoarray = (con, num) =>{
+        setBingoarray(() =>{
+            let newarray = [...bingoarray];
+            newarray[num] = {value:con};
+            return newarray;
+        });
+    }
+
     return(
         <>
-        <Example title={title} subtitle={subtitle} backcolor={backcolor} titlecolor={titlecolor} subtitlecolor={subtitlecolor}/>
+        <Example title={title} subtitle={subtitle} backcolor={backcolor} titlecolor={titlecolor} subtitlecolor={subtitlecolor} bingoarray={bingoarray}/>
         <Centerline></Centerline>
-        <Exmake changetitle={changetitle} changesubtitle={changesubtitle} changebackcolor={changebackcolor} changetitlecolor={changetitlecolor} changesubtitlecolor={changesubtitlecolor}/>
+        <Exmake changetitle={changetitle} changesubtitle={changesubtitle} changebackcolor={changebackcolor} changetitlecolor={changetitlecolor} changesubtitlecolor={changesubtitlecolor} changebingoarray={changebingoarray}/>
         </>
     );
 }

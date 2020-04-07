@@ -7,13 +7,11 @@ const Example = ({
     subtitle={subtitle},
     backcolor={backcolor},
     titlecolor={titlecolor},
-    subtitlecolor={subtitlecolor}
+    subtitlecolor={subtitlecolor},
+    bingoarray={bingoarray}
 }) =>{
-
-    const [bingoarray, setBingoarray] = useState([{},{value:"나는 샤워실에서 떼창을 해봤다"},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]);
-
     return(
-        <All>
+        <All>{console.log(bingoarray)}
             <Exbox backcolor={backcolor}>
                 <Title titlecolor={titlecolor}>{title}</Title>
                 <Subtitle subtitlecolor={subtitlecolor}>{subtitle}</Subtitle>

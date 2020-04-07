@@ -8,7 +8,8 @@ const Exmake = ({
     changesubtitle,
     changebackcolor,
     changetitlecolor,
-    changesubtitlecolor
+    changesubtitlecolor,
+    changebingoarray
 }) => {
 
     const [titlecolorclick, setTitlecolorclick] = useState(0);
@@ -19,8 +20,9 @@ const Exmake = ({
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
     const [subtitle, setSubtitle] = useState("");
 
-    const [rownum, setRownum] = useState("");
-    const [columnnum, setColumnnum] = useState("");
+    const [rownum, setRownum] = useState("1");
+    const [columnnum, setColumnnum] = useState("1");
+    const [contents, setContents] = useState("");
 
     const [backcolorclick, setBackcolorclick] = useState(0);
     const [backcolor, setBackcolor] = useState("#ffffff");
@@ -74,6 +76,11 @@ const Exmake = ({
 
     const changecolumnnum = (e)=>{
         setColumnnum(e.target.value);
+    }
+
+    const changecontents = (e) =>{
+        setContents(e.target.value);
+        changebingoarray(contents,(columnnum-1)*5+(rownum-1));
     }
 
 
@@ -135,6 +142,11 @@ const Exmake = ({
                         <Rowcolumndown value="5">5</Rowcolumndown>
                     </Rowcolumndrop>
                 </Rowcolumnsection>
+                <Positionsection>위치 : {rownum} X {columnnum}</Positionsection>
+                <Positioncontents>
+                    <Positioncontentsname>내용</Positioncontentsname>
+                    <Titleinput placeholder="내용을 입력하세요" type="text" value={contents} onChange={changecontents}/>
+                </Positioncontents>
             </Infosection>
         </All>
     );
@@ -212,6 +224,26 @@ const InsectionB = styled.div`
     text-align:left;
     line-height:60px;
 `
+
+const Positionsection = styled.div`
+    margin-left:20px;
+    margin-top:20px;
+    font-size:25px;
+    color:#595959;
+`;
+
+const Positioncontents = styled.div`
+    margin-left:20px;
+    margin-top:20px;
+    display:flex;
+    flex-direction:row;
+`;
+
+const Positioncontentsname = styled.div`
+    font-size:20px;
+    color:#595959;
+    margin-top:2px;
+`;
 
 const Title = styled.div`
     margin-top:30px;
