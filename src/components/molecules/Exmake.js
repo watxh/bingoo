@@ -9,7 +9,8 @@ const Exmake = ({
     changebackcolor,
     changetitlecolor,
     changesubtitlecolor,
-    changebingoarray
+    changebingoarray,
+    bingoarray
 }) => {
 
     const [titlecolorclick, setTitlecolorclick] = useState(0);
@@ -82,7 +83,6 @@ const Exmake = ({
         setContents(e.target.value);
         changebingoarray(e.target.value,(columnnum-1)*5+(rownum-1));
     }
-
 
     return (
         <All>

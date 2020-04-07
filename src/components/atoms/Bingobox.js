@@ -7,8 +7,8 @@ const Bingobox = styled.div`
     margin:3px;
     background-color:white;
     border-radius:4px;
-    font-size:12px;
-    font-family: 'Jua', sans-serif;
+    font-size:11px;
+    font-family: 'Noto Sans KR', sans-serif;
     display:flex;
     align-items:center;
     overflow:hidden;

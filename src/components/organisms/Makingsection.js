@@ -13,7 +13,7 @@ const Makingsection = () =>{
     const [titlecolor, setTitlecolor] = useState("#ffffff");
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
 
-    const [bingoarray, setBingoarray] = useState([{value:"dkdk"},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]);
+    const [bingoarray, setBingoarray] = useState([{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]);
 
     const changetitle = (name) =>{
         setTitle(name);
@@ -47,7 +47,14 @@ const Makingsection = () =>{
         <>
         <Example title={title} subtitle={subtitle} backcolor={backcolor} titlecolor={titlecolor} subtitlecolor={subtitlecolor} bingoarray={bingoarray}/>
         <Centerline></Centerline>
-        <Exmake changetitle={changetitle} changesubtitle={changesubtitle} changebackcolor={changebackcolor} changetitlecolor={changetitlecolor} changesubtitlecolor={changesubtitlecolor} changebingoarray={changebingoarray}/>
+        <Exmake 
+        changetitle={changetitle}
+        changesubtitle={changesubtitle} 
+        changebackcolor={changebackcolor} 
+        changetitlecolor={changetitlecolor} 
+        changesubtitlecolor={changesubtitlecolor} 
+        changebingoarray={changebingoarray}
+        bingoarray={bingoarray}/>
         </>
     );
 }
