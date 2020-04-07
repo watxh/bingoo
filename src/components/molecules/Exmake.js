@@ -80,7 +80,7 @@ const Exmake = ({
 
     const changecontents = (e) =>{
         setContents(e.target.value);
-        changebingoarray(contents,(columnnum-1)*5+(rownum-1));
+        changebingoarray(e.target.value,(columnnum-1)*5+(rownum-1));
     }
 
 
