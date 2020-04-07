@@ -10,7 +10,7 @@ const Example = ({
     subtitlecolor={subtitlecolor}
 }) =>{
 
-    const [bingoarray, setBingoarray] = useState([{value:"안녕"},{value:"안asasddasdasd녕"},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]);
+    const [bingoarray, setBingoarray] = useState([{},{value:"나는 샤워실에서 떼창을 해봤다"},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]);
 
     return(
         <All>

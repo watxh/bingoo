@@ -7,8 +7,11 @@ const Bingobox = styled.div`
     margin:3px;
     background-color:white;
     border-radius:4px;
-    font-size:15px;
+    font-size:12px;
     font-family: 'Jua', sans-serif;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
 `;
 
 export default Bingobox;

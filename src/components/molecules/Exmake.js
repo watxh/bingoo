@@ -19,6 +19,9 @@ const Exmake = ({
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
     const [subtitle, setSubtitle] = useState("");
 
+    const [rownum, setRownum] = useState("");
+    const [columnnum, setColumnnum] = useState("");
+
     const [backcolorclick, setBackcolorclick] = useState(0);
     const [backcolor, setBackcolor] = useState("#ffffff");
 
@@ -65,6 +68,14 @@ const Exmake = ({
         changesubtitle(e.target.value);
     }
 
+    const changerownum = (e) =>{
+        setRownum(e.target.value);
+    }
+
+    const changecolumnnum = (e)=>{
+        setColumnnum(e.target.value);
+    }
+
 
     return (
         <All>
@@ -105,6 +116,25 @@ const Exmake = ({
                     </Sectionname>
                 </InsectionB>
                 
+                <Rowcolumnsection>
+                    <Titlename>가로 : </Titlename>
+                    <Rowcolumndrop onChange={changerownum}>
+                        <Rowcolumndown value="1">1</Rowcolumndown>
+                        <Rowcolumndown value="2">2</Rowcolumndown>
+                        <Rowcolumndown value="3">3</Rowcolumndown>
+                        <Rowcolumndown value="4">4</Rowcolumndown>
+                        <Rowcolumndown value="5">5</Rowcolumndown>
+                    </Rowcolumndrop>
+
+                    <Titlename>세로 : </Titlename>
+                    <Rowcolumndrop onChange={changecolumnnum}>
+                        <Rowcolumndown value="1">1</Rowcolumndown>
+                        <Rowcolumndown value="2">2</Rowcolumndown>
+                        <Rowcolumndown value="3">3</Rowcolumndown>
+                        <Rowcolumndown value="4">4</Rowcolumndown>
+                        <Rowcolumndown value="5">5</Rowcolumndown>
+                    </Rowcolumndrop>
+                </Rowcolumnsection>
             </Infosection>
         </All>
     );
@@ -226,6 +256,22 @@ const Subtitleinput = styled.input`
     border:1.4px solid #B5B5B5;
     padding-left:10px;
 `
+
+const Rowcolumnsection = styled.div`
+    margin-top:20px;
+    margin-left:20px;
+    display:flex;
+    flex-direction:row;
+`;
+
+const Rowcolumndrop = styled.select`
+    margin-left:10px;
+    margin-right:20px;
+`;
+
+const Rowcolumndown = styled.option`
+
+`;
 
 const Backcolor = styled.div`
     margin-top:30px;
