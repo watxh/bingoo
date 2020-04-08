@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 
 import { ChromePicker } from 'react-color'
 
@@ -27,6 +27,14 @@ const Exmake = ({
 
     const [backcolorclick, setBackcolorclick] = useState(0);
     const [backcolor, setBackcolor] = useState("#ffffff");
+
+    useEffect(()=>{
+        if((bingoarray[(columnnum-1)*5+(rownum-1)]).value == undefined){
+            setContents("");
+        }else{
+            setContents((bingoarray[(columnnum-1)*5+(rownum-1)]).value);
+        }
+    }, [rownum, columnnum])
 
     const Buttonclose = () =>{
         setTitlecolorclick(0);
@@ -72,12 +80,10 @@ const Exmake = ({
     }
 
     const changerownum = (e) =>{
-        setContents(JSON.stringify(bingoarray[(columnnum-1)*5+(rownum-1)]));
         setRownum(e.target.value);
     }
 
     const changecolumnnum = (e)=>{
-        setContents(JSON.stringify(bingoarray[(columnnum-1)*5+(rownum-1)]));
         setColumnnum(e.target.value);
     }
 
