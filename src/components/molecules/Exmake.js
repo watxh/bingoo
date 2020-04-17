@@ -124,7 +124,7 @@ const Exmake = ({
                 </Backcolor>
             </Infosection>
 
-            <Infosection>
+            <InfosectionB>
                 <InsectionB>
                     <Sectionname>
                         빙고 내용 추가
@@ -155,7 +155,12 @@ const Exmake = ({
                     <Positioncontentsname>내용</Positioncontentsname>
                     <Titleinput placeholder="내용을 입력하세요" type="text" value={contents} onChange={changecontents}/>
                 </Positioncontents>
-            </Infosection>
+
+                <Savesection>
+                    <Saveimage src="/data/image/icon/download.png"/>
+                    <Savebutton>저장하기</Savebutton>
+                </Savesection>
+            </InfosectionB>
         </All>
     );
 }
@@ -205,6 +210,13 @@ const Infosection = styled.div`
     flex-direction:column;
 `;
 
+const InfosectionB = styled.div`
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+`;
+
 const Sectionname = styled.div`
     color:#595959;
     margin-left:20px;
@@ -232,6 +244,36 @@ const InsectionB = styled.div`
     text-align:left;
     line-height:60px;
 `
+
+const Savesection = styled.div`
+    width:100%;
+    height:100%;
+    text-align:right;
+    align-items:right;
+`;
+
+const Savebutton = styled.button`
+    width:120px;
+    height:43px;
+    margin-top:90px;
+    margin-right:50px;
+    background-color:#0037B6;
+    color:white;
+    border:0px;
+    border-radius:7px;
+    font-size:21px;
+    font-family: 'Do Hyeon', sans-serif;
+    text-align:right;
+    padding-right:10px;
+`;
+
+const Saveimage = styled.img`
+    width:25px;
+    height:auto;
+    position:relative;
+    left:35px;
+    top:5px;
+`;
 
 const Positionsection = styled.div`
     margin-left:20px;
