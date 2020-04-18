@@ -2,8 +2,8 @@ import styled, {css} from "styled-components";
 import React, { Component, useState } from "react";
 
 const Bingobox = styled.div`
-    width:65px;
-    height:65px;
+    width:53px;
+    height:53px;
     margin:3px;
     background-color:white;
     border-radius:4px;
@@ -12,6 +12,7 @@ const Bingobox = styled.div`
     display:flex;
     align-items:center;
     overflow:hidden;
+    padding:6px;
 `;
 
 export default Bingobox;

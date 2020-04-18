@@ -1,7 +1,9 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 import React, { Component, useState, useEffect } from "react";
 
 import { ChromePicker } from 'react-color'
+import download from "downloadjs"
+import * as htmlToImage from 'html-to-image';
 
 const Exmake = ({
     changetitle,
@@ -28,34 +30,34 @@ const Exmake = ({
     const [backcolorclick, setBackcolorclick] = useState(0);
     const [backcolor, setBackcolor] = useState("#ffffff");
 
-    useEffect(()=>{
-        if((bingoarray[(columnnum-1)*5+(rownum-1)]).value == undefined){
+    useEffect(() => {
+        if ((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).value == undefined) {
             setContents("");
-        }else{
-            setContents((bingoarray[(columnnum-1)*5+(rownum-1)]).value);
+        } else {
+            setContents((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).value);
         }
     }, [rownum, columnnum])
 
-    const Buttonclose = () =>{
+    const Buttonclose = () => {
         setTitlecolorclick(0);
         setSubtitlecolorclick(0);
         setBackcolorclick(0);
     }
 
-    const Backcolorclick = () =>{
-        if(backcolorclick===1){setBackcolorclick(0)}else{setBackcolorclick(1)}
+    const Backcolorclick = () => {
+        if (backcolorclick === 1) { setBackcolorclick(0) } else { setBackcolorclick(1) }
     }
 
-    const changebackcolorh=(color)=>{
+    const changebackcolorh = (color) => {
         changebackcolor(color);
         setBackcolor(color);
     }
 
-    const Titlecolorclick = () =>{
-        if(titlecolorclick===1){setTitlecolorclick(0)}else{setTitlecolorclick(1)}
+    const Titlecolorclick = () => {
+        if (titlecolorclick === 1) { setTitlecolorclick(0) } else { setTitlecolorclick(1) }
     }
 
-    const changetitlecolorh = (color) =>{
+    const changetitlecolorh = (color) => {
         changetitlecolor(color);
         setTitlecolor(color);
     }
@@ -65,11 +67,11 @@ const Exmake = ({
         changetitle(e.target.value);
     }
 
-    const Subtitlecolorclick = () =>{
-        if(subtitlecolorclick===1){setSubtitlecolorclick(0)}else{setSubtitlecolorclick(1)}
+    const Subtitlecolorclick = () => {
+        if (subtitlecolorclick === 1) { setSubtitlecolorclick(0) } else { setSubtitlecolorclick(1) }
     }
 
-    const changesubtitlecolorh = (color) =>{
+    const changesubtitlecolorh = (color) => {
         changesubtitlecolor(color);
         setSubtitlecolor(color);
     }
@@ -79,21 +81,28 @@ const Exmake = ({
         changesubtitle(e.target.value);
     }
 
-    const changerownum = (e) =>{
+    const changerownum = (e) => {
         setRownum(e.target.value);
     }
 
-    const changecolumnnum = (e)=>{
+    const changecolumnnum = (e) => {
         setColumnnum(e.target.value);
     }
 
-    const changecontents = (e) =>{
+    const changecontents = (e) => {
         setContents(e.target.value);
-        changebingoarray(e.target.value,(columnnum-1)*5+(rownum-1));
+        changebingoarray(e.target.value, (columnnum - 1) * 5 + (rownum - 1));
+    }
+
+    const asdf = () => {
+        htmlToImage.toPng(document.getElementById('all'))
+            .then(function (dataUrl) {
+                download(dataUrl, 'my-node.png');
+            });
     }
 
     return (
-        <All>
+        <All><div id='all'>
             <Infosection>
                 <Insection>
                     <Sectionname>
@@ -103,24 +112,24 @@ const Exmake = ({
 
                 <Title>
                     <Titlename>제목</Titlename>
-                    <Titleinput placeholder="제목을 입력하세요" type="text" value={title} onChange={Changetitle}/>
+                    <Titleinput placeholder="제목을 입력하세요" type="text" value={title} onChange={Changetitle} />
                     <Titlename>제목색</Titlename>
-                    <Rgbbutton backcolor={titlecolor} onClick={Titlecolorclick}/>
-                    {titlecolorclick ?<Popover><Cover onClick={Buttonclose}></Cover><ChromePicker color={titlecolor} onChange={changetitlecolorh}/></Popover>:<></>}
+                    <Rgbbutton backcolor={titlecolor} onClick={Titlecolorclick} />
+                    {titlecolorclick ? <Popover><Cover onClick={Buttonclose}></Cover><ChromePicker color={titlecolor} onChange={changetitlecolorh} /></Popover> : <></>}
                 </Title>
 
                 <Subtitle>
                     <Subtitlename>부제목</Subtitlename>
-                    <Subtitleinput placeholder="부제목을 입력하세요" type="text" value={subtitle} onChange={Changesubtitle}/>
+                    <Subtitleinput placeholder="부제목을 입력하세요" type="text" value={subtitle} onChange={Changesubtitle} />
                     <Subtitlename>부제목색</Subtitlename>
-                    <Rgbbutton backcolor={subtitlecolor} onClick={Subtitlecolorclick}/>
-                    {subtitlecolorclick ?<Popover><Cover onClick={Buttonclose}></Cover><ChromePicker color={subtitlecolor} onChange={changesubtitlecolorh}/></Popover>:<></>}
+                    <Rgbbutton backcolor={subtitlecolor} onClick={Subtitlecolorclick} />
+                    {subtitlecolorclick ? <Popover><Cover onClick={Buttonclose}></Cover><ChromePicker color={subtitlecolor} onChange={changesubtitlecolorh} /></Popover> : <></>}
                 </Subtitle>
 
                 <Backcolor>
                     <Backcolorname>배경색</Backcolorname>
-                    <Rgbbutton backcolor={backcolor} onClick={Backcolorclick}/>
-                    {backcolorclick ?<PopoverB><Cover onClick={Buttonclose}></Cover><ChromePicker color={backcolor} onChange={changebackcolorh}/></PopoverB>:<></>}
+                    <Rgbbutton backcolor={backcolor} onClick={Backcolorclick} />
+                    {backcolorclick ? <PopoverB><Cover onClick={Buttonclose}></Cover><ChromePicker color={backcolor} onChange={changebackcolorh} /></PopoverB> : <></>}
                 </Backcolor>
             </Infosection>
 
@@ -130,7 +139,7 @@ const Exmake = ({
                         빙고 내용 추가
                     </Sectionname>
                 </InsectionB>
-                
+
                 <Rowcolumnsection>
                     <Titlename>가로 : </Titlename>
                     <Rowcolumndrop onChange={changerownum}>
@@ -153,15 +162,15 @@ const Exmake = ({
                 <Positionsection>위치 : {rownum} X {columnnum}</Positionsection>
                 <Positioncontents>
                     <Positioncontentsname>내용</Positioncontentsname>
-                    <Titleinput placeholder="내용을 입력하세요" type="text" value={contents} onChange={changecontents}/>
+                    <Titleinput placeholder="내용을 입력하세요" type="text" value={contents} onChange={changecontents} />
                 </Positioncontents>
 
                 <Savesection>
-                    <Saveimage src="/data/image/icon/download.png"/>
-                    <Savebutton>저장하기</Savebutton>
+                    <Saveimage src="/data/image/icon/download.png" />
+                    <Savebutton onClick={asdf}>저장하기</Savebutton>
                 </Savesection>
             </InfosectionB>
-        </All>
+            </div></All>
     );
 }
 
@@ -198,10 +207,10 @@ const Rgbbutton = styled.div`
     width:30px;
     height:30px;
     border:2px solid black;
-    ${({backcolor}) => backcolor && css`
+    ${({ backcolor }) => backcolor && css`
         background-color:${backcolor.hex};
   ` }
-`;  
+`;
 
 const Infosection = styled.div`
     width:100%;
