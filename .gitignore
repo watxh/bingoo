@@ -2,9 +2,9 @@
 
 # dependencies
 /node_modules
+/servers
 /.pnp
 .pnp.js
-/servers
 
 # testing
 /coverage
