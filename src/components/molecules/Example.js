@@ -1,30 +1,31 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 import React, { Component, useState } from "react";
 import Bingobox from "../atoms/Bingobox"
 import download from "downloadjs"
 import * as htmlToImage from 'html-to-image';
 
 const Example = ({
-    title={title},
-    subtitle={subtitle},
-    backcolor={backcolor},
-    titlecolor={titlecolor},
-    subtitlecolor={subtitlecolor},
-    bingoarray={bingoarray}
-}) =>{
+    title = { title },
+    subtitle = { subtitle },
+    backcolor = { backcolor },
+    titlecolor = { titlecolor },
+    subtitlecolor = { subtitlecolor },
+    bingoarray = { bingoarray }
+}) => {
+    return (
 
-    return(
         <All>
             <Exbox backcolor={backcolor}>
                 <Title titlecolor={titlecolor}>{title}</Title>
                 <Subtitle subtitlecolor={subtitlecolor}>{subtitle}</Subtitle>
                 <Bingoboxsection>
-                    {bingoarray.map(({value})=>(
+                    {bingoarray.map(({ value }) => (
                         <Bingobox>{value}</Bingobox>
                     ))}
                 </Bingoboxsection>
             </Exbox>
         </All>
+
     );
 }
 
@@ -38,7 +39,7 @@ const Exbox = styled.div`
     left:25%;
     top:50%;
     background-color:#000000;
-    ${({backcolor}) => backcolor && css`
+    ${({ backcolor }) => backcolor && css`
         background-color:${backcolor.hex};
   ` }
     width:375px;
@@ -55,7 +56,7 @@ const Title = styled.div`
     font-size:40px;
     font-family: 'Jua', sans-serif;
     color:#ffffff;
-    ${({titlecolor}) => titlecolor && css`
+    ${({ titlecolor }) => titlecolor && css`
         color:${titlecolor.hex};
   ` }
 `
@@ -65,7 +66,7 @@ const Subtitle = styled.div`
     font-size:30px;
     font-family: 'Nanum Pen Script', cursive;
     color:#ffffff;
-    ${({subtitlecolor}) => subtitlecolor && css`
+    ${({ subtitlecolor }) => subtitlecolor && css`
         color:${subtitlecolor.hex};
   ` }
 `

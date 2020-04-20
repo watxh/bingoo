@@ -12,8 +12,7 @@ const Exmake = ({
     changetitlecolor,
     changesubtitlecolor,
     changebingoarray,
-    bingoarray,
-    downloadimage
+    bingoarray
 }) => {
 
     const [titlecolorclick, setTitlecolorclick] = useState(0);
@@ -96,7 +95,7 @@ const Exmake = ({
     }
 
     return (
-        <All><div>
+        <All>
             <Infosection>
                 <Insection>
                     <Sectionname>
@@ -161,10 +160,10 @@ const Exmake = ({
 
                 <Savesection>
                     <Saveimage src="/data/image/icon/download.png" />
-                    <Savebutton onClick={downloadimage}>저장하기</Savebutton>
+                    <Savebutton>저장하기</Savebutton>
                 </Savesection>
             </InfosectionB>
-            </div></All>
+            </All>
     );
 }
 

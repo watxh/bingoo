@@ -6,7 +6,7 @@ import Exmake from "../molecules/Exmake"
 import download from "downloadjs"
 import * as htmlToImage from 'html-to-image';
 
-const Makingsection = () =>{
+const Makingsection = () => {
 
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
@@ -15,63 +15,69 @@ const Makingsection = () =>{
     const [titlecolor, setTitlecolor] = useState("#ffffff");
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
 
-    const [bingoarray, setBingoarray] = useState([{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]);
+    const [bingoarray, setBingoarray] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
 
-    const changetitle = (name) =>{
+    const changetitle = (name) => {
         setTitle(name);
     }
 
-    const changesubtitle = (name) =>{
-        setSubtitle(name);  
+    const changesubtitle = (name) => {
+        setSubtitle(name);
     }
 
-    const changebackcolor = (color) =>{
+    const changebackcolor = (color) => {
         setBackcolor(color);
     }
 
-    const changetitlecolor = (color) =>{
+    const changetitlecolor = (color) => {
         setTitlecolor(color);
     }
 
-    const changesubtitlecolor = (color) =>{
+    const changesubtitlecolor = (color) => {
         setSubtitlecolor(color);
     }
 
-    const changebingoarray = (con, num) =>{
-        setBingoarray(() =>{
+    const changebingoarray = (con, num) => {
+        setBingoarray(() => {
             let newarray = [...bingoarray];
-            newarray[num] = {value:con};
+            newarray[num] = { value: con };
             return newarray;
         });
     }
 
-    const downloadimage = () => {
-        htmlToImage.toPng(document.getElementById('all'))
-            .then(function (dataUrl) {
-                download(dataUrl, 'my-node.png');
-            });
-    }
+    // const downloadimage = () => {
+    //     htmlToImage.toPng(document.getElementById('all'))
+    //         .then(function (dataUrl) {
+    //             download(dataUrl, 'my-node.png');
+    //         });
+    // }
 
-    return(
+    // const downloadimageP = () => {
+    //     downloadimage();
+    // }
+
+    return (
         <>
-        <Example id='all'
-        title={title} 
-        subtitle={subtitle} 
-        backcolor={backcolor} 
-        titlecolor={titlecolor} 
-        subtitlecolor={subtitlecolor} 
-        bingoarray={bingoarray}/>
-        <Centerline></Centerline>
-        <Exmake 
-        changetitle={changetitle}
-        changesubtitle={changesubtitle} 
-        changebackcolor={changebackcolor} 
-        changetitlecolor={changetitlecolor} 
-        changesubtitlecolor={changesubtitlecolor} 
-        changebingoarray={changebingoarray}
-        bingoarray={bingoarray}
-        downloadimage={downloadimage}
-        />
+            <div>
+                <Example
+                    title={title}
+                    subtitle={subtitle}
+                    backcolor={backcolor}
+                    titlecolor={titlecolor}
+                    subtitlecolor={subtitlecolor}
+                    bingoarray={bingoarray}>
+                </Example>
+            </div>
+            <Centerline></Centerline>
+            <Exmake
+                changetitle={changetitle}
+                changesubtitle={changesubtitle}
+                changebackcolor={changebackcolor}
+                changetitlecolor={changetitlecolor}
+                changesubtitlecolor={changesubtitlecolor}
+                changebingoarray={changebingoarray}
+                bingoarray={bingoarray}
+            />
         </>
     );
 }
