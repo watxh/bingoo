@@ -3,6 +3,8 @@ import React, { Component, useState } from "react";
 
 import Example from "../molecules/Example"
 import Exmake from "../molecules/Exmake"
+import download from "downloadjs"
+import * as htmlToImage from 'html-to-image';
 
 const Makingsection = () =>{
 
@@ -43,9 +45,22 @@ const Makingsection = () =>{
         });
     }
 
+    const downloadimage = () => {
+        htmlToImage.toPng(document.getElementById('all'))
+            .then(function (dataUrl) {
+                download(dataUrl, 'my-node.png');
+            });
+    }
+
     return(
         <>
-        <Example title={title} subtitle={subtitle} backcolor={backcolor} titlecolor={titlecolor} subtitlecolor={subtitlecolor} bingoarray={bingoarray}/>
+        <Example id='all'
+        title={title} 
+        subtitle={subtitle} 
+        backcolor={backcolor} 
+        titlecolor={titlecolor} 
+        subtitlecolor={subtitlecolor} 
+        bingoarray={bingoarray}/>
         <Centerline></Centerline>
         <Exmake 
         changetitle={changetitle}
@@ -54,7 +69,9 @@ const Makingsection = () =>{
         changetitlecolor={changetitlecolor} 
         changesubtitlecolor={changesubtitlecolor} 
         changebingoarray={changebingoarray}
-        bingoarray={bingoarray}/>
+        bingoarray={bingoarray}
+        downloadimage={downloadimage}
+        />
         </>
     );
 }

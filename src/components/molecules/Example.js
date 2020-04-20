@@ -1,6 +1,8 @@
 import styled, {css} from "styled-components";
 import React, { Component, useState } from "react";
 import Bingobox from "../atoms/Bingobox"
+import download from "downloadjs"
+import * as htmlToImage from 'html-to-image';
 
 const Example = ({
     title={title},
@@ -10,6 +12,7 @@ const Example = ({
     subtitlecolor={subtitlecolor},
     bingoarray={bingoarray}
 }) =>{
+
     return(
         <All>
             <Exbox backcolor={backcolor}>

@@ -12,7 +12,8 @@ const Exmake = ({
     changetitlecolor,
     changesubtitlecolor,
     changebingoarray,
-    bingoarray
+    bingoarray,
+    downloadimage
 }) => {
 
     const [titlecolorclick, setTitlecolorclick] = useState(0);
@@ -94,15 +95,8 @@ const Exmake = ({
         changebingoarray(e.target.value, (columnnum - 1) * 5 + (rownum - 1));
     }
 
-    const asdf = () => {
-        htmlToImage.toPng(document.getElementById('all'))
-            .then(function (dataUrl) {
-                download(dataUrl, 'my-node.png');
-            });
-    }
-
     return (
-        <All><div id='all'>
+        <All><div>
             <Infosection>
                 <Insection>
                     <Sectionname>
@@ -167,7 +161,7 @@ const Exmake = ({
 
                 <Savesection>
                     <Saveimage src="/data/image/icon/download.png" />
-                    <Savebutton onClick={asdf}>저장하기</Savebutton>
+                    <Savebutton onClick={downloadimage}>저장하기</Savebutton>
                 </Savesection>
             </InfosectionB>
             </div></All>
@@ -262,6 +256,10 @@ const Savesection = styled.div`
 `;
 
 const Savebutton = styled.button`
+    @font-face {
+        font-family: asdf;
+        src: url('/data/font/DoHyeon-Regular.ttf');
+    }
     width:120px;
     height:43px;
     margin-top:90px;
@@ -271,7 +269,7 @@ const Savebutton = styled.button`
     border:0px;
     border-radius:7px;
     font-size:21px;
-    font-family: 'Do Hyeon', sans-serif;
+    font-family: 'asdf';
     text-align:right;
     padding-right:10px;
 `;
