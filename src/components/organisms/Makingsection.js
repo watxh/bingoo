@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React, { Component, useState } from "react";
+import axios from 'axios';
 
 import Example from "../molecules/Example"
 import Exmake from "../molecules/Exmake"
@@ -18,6 +19,8 @@ const Makingsection = () => {
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
 
     const [bingoarray, setBingoarray] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
+
+    const [issuccess, setIssuccess] = useState(0);
 
     const changetitle = (name) => {
         setTitle(name);
@@ -45,6 +48,25 @@ const Makingsection = () => {
             newarray[num] = { value: con };
             return newarray;
         });
+    }
+
+    const changesuccess = () =>{
+        postdata();
+        setIssuccess(1);
+    }
+
+    const postdata = async() =>{
+        const params = new URLSearchParams();
+        params.append('id', "/tv123");
+        params.append('title', title);
+        params.append('subtitle', subtitle);
+        params.append('backcolor', backcolor);
+        params.append('titlecolor', titlecolor);
+        params.append('subtitlecolor', subtitlecolor);
+        params.append('bingoarray', bingoarray);
+
+        const a = await axios.post('http://localhost:3001/users/b', params);
+        console.log(a);
     }
 
     // const downloadimage = () => {
@@ -79,8 +101,9 @@ const Makingsection = () => {
                 changesubtitlecolor={changesubtitlecolor}
                 changebingoarray={changebingoarray}
                 bingoarray={bingoarray}
+                changesuccess={changesuccess}
             />
-            <Success/>
+            {issuccess===1 ? <Success/>:<></>}
         </>
     );
 }

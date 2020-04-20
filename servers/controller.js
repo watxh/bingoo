@@ -8,8 +8,13 @@ var User = require('./model');
 
 router.post('/b', function(req, res, next){
     User.create( {
-        name: req.body.name, 
-        color:req.body.color
+        id: req.body.id, 
+        title:req.body.title,
+        subtitle:req.body.subtitle,
+        backcolor:req.body.backcolor,
+        titlecolor:req.body.titlecolor,
+        subtitlecolor:req.body.subtitlecolor,
+        bingoarray:req.body.bingoarray
         },
         function(err, user) {
             if (err) return res.status(500).send("User 생성 실패.");

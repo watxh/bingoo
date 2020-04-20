@@ -8,8 +8,13 @@ db.once('open', function callback () {
 });
 
 var testSchema = mongoose.Schema({
-    name: String,
-    color:String
+    id:String,
+    title:String,
+    subtitle:String,
+    backcolor:String,
+    titlecolor:String,
+    subtitlecolor:String,
+    bingoarray:Array
 });
 
 mongoose.model("dimigo", testSchema, "dimigo");

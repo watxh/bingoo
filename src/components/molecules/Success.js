@@ -20,7 +20,7 @@ const Success = () => {
 
 const Boxbig = keyframes`
   0% {
-      transform: scaleX(0) scaleY(0);
+      transform: scaleX(0.05) scaleY(0.05);
   }
   60% {
       transform: scaleX(1.03) scaleY(1.03);
@@ -53,7 +53,7 @@ const Box = styled.div`
     display:flex;
     flex-direction:column;
     text-align:center;
-    animation: ${Boxbig} 0.9s;
+    animation: ${Boxbig} 0.8s;
 `;
 
 const Successimage = styled.img`
