@@ -3,6 +3,8 @@ import React, { Component, useState } from "react";
 
 import Example from "../molecules/Example"
 import Exmake from "../molecules/Exmake"
+import Success from "../molecules/Success"
+
 import download from "downloadjs"
 import * as htmlToImage from 'html-to-image';
 
@@ -78,6 +80,7 @@ const Makingsection = () => {
                 changebingoarray={changebingoarray}
                 bingoarray={bingoarray}
             />
+            <Success/>
         </>
     );
 }
