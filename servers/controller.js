@@ -17,7 +17,7 @@ router.post('/b', function(req, res, next){
         bingoarray:req.body.bingoarray
         },
         function(err, user) {
-            if (err) return res.status(500).send("User 생성 실패.");
+            if (err) return res.status(500).send("생성 실패.");
             res.status(200).send(req.body);
         });
 })

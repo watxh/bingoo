@@ -60,9 +60,9 @@ const Makingsection = () => {
         params.append('id', "/tv123");
         params.append('title', title);
         params.append('subtitle', subtitle);
-        params.append('backcolor', backcolor);
-        params.append('titlecolor', titlecolor);
-        params.append('subtitlecolor', subtitlecolor);
+        params.append('backcolor', (Object.entries(backcolor)[1][1]));
+        params.append('titlecolor', (Object.entries(titlecolor)[1][1]));
+        params.append('subtitlecolor', (Object.entries(subtitlecolor)[1][1]));
         params.append('bingoarray', bingoarray);
 
         const a = await axios.post('http://localhost:3001/users/b', params);
