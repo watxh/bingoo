@@ -55,9 +55,20 @@ const Makingsection = () => {
         setIssuccess(1);
     }
 
+    function randomStr(m) {
+        var m = m || 9; 
+        var s = '';
+        var r = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        for (var i=0; i < m; i++) { s += r.charAt(Math.floor(Math.random()*r.length)); }
+        return s;
+    };
+
     const postdata = async() =>{
         const params = new URLSearchParams();
-        params.append('id', "/tv123");
+
+        var id = "/" + randomStr(5);
+        
+        params.append('id', id);
         params.append('title', title);
         params.append('subtitle', subtitle);
         params.append('backcolor', (Object.entries(backcolor)[1][1]));
