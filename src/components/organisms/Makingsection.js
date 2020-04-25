@@ -20,6 +20,7 @@ const Makingsection = () => {
 
     const [bingoarray, setBingoarray] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
 
+    const [address, setAddress] = useState("");
     const [issuccess, setIssuccess] = useState(0);
 
     const changetitle = (name) => {
@@ -52,7 +53,6 @@ const Makingsection = () => {
 
     const changesuccess = () =>{
         postdata();
-        setIssuccess(1);
     }
 
     function randomStr(m) {
@@ -67,17 +67,25 @@ const Makingsection = () => {
         const params = new URLSearchParams();
 
         var id = "/" + randomStr(5);
-        
+
         params.append('id', id);
         params.append('title', title);
         params.append('subtitle', subtitle);
         params.append('backcolor', (Object.entries(backcolor)[1][1]));
         params.append('titlecolor', (Object.entries(titlecolor)[1][1]));
         params.append('subtitlecolor', (Object.entries(subtitlecolor)[1][1]));
-        params.append('bingoarray', bingoarray);
+
+        for(let i = 0; i < 25; i++){
+            if(bingoarray[i].value != undefined){
+                params.append('bingoarray', bingoarray[i].value);
+            }
+        }
 
         const a = await axios.post('http://localhost:3001/users/b', params);
-        console.log(a);
+
+        setAddress(id);
+
+        setIssuccess(1);
     }
 
     // const downloadimage = () => {
@@ -114,7 +122,7 @@ const Makingsection = () => {
                 bingoarray={bingoarray}
                 changesuccess={changesuccess}
             />
-            {issuccess===1 ? <Success/>:<></>}
+            {issuccess===1 ? <Success address = {address}/>:<></>}
         </>
     );
 }

@@ -1,14 +1,16 @@
 import styled, { css, keyframes } from "styled-components";
 import React, { Component, useState, useEffect } from "react";
 
-const Success = () => {
+const Success = (
+    address
+) => {
     return (
         <>
             <Cover />
             <Box>
                 <Successimage src="/data/image/icon/success.png" />
                 <Titletext>성공!</Titletext>
-                <Linktext>https://www.bingo.com/tv123</Linktext>
+                <Linktext>https://www.bingo.com{address.address}</Linktext>
                 <Buttonline>
                     <Copybutton>링크 복사하기</Copybutton>
                     <Startbutton>빙고 하러가기</Startbutton>

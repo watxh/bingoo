@@ -6,7 +6,7 @@ const Dobingo = (
 ) =>{
     return(
         <>
-        {(data.data.title)}
+        {console.log(data.data.bingoarray)}
         </>
     )
 }
