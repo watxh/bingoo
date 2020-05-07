@@ -18,7 +18,7 @@ const Makingsection = () => {
     const [titlecolor, setTitlecolor] = useState("#ffffff");
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
 
-    const [bingoarray, setBingoarray] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
+    const [bingoarray, setBingoarray] = useState([{value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}]);
 
     const [address, setAddress] = useState("");
     const [issuccess, setIssuccess] = useState(0);

@@ -14,7 +14,7 @@ var testSchema = mongoose.Schema({
     backcolor:String,
     titlecolor:String,
     subtitlecolor:String,
-    bingoarray:String
+    bingoarray:Array
 });
 
 mongoose.model("dimigo", testSchema, "dimigo");
