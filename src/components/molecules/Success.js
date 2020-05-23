@@ -2,17 +2,40 @@ import styled, { css, keyframes } from "styled-components";
 import React, { Component, useState, useEffect } from "react";
 
 const Success = (
-    address
+    props
 ) => {
+
+    const [address, setAddress] = useState("");
+
+    useEffect(() => {
+        setAddress(props.props);
+    }, [])
+
+    const CopytoClip = () =>{
+        const selBox = document.createElement('textarea');
+        selBox.style.position = 'fixed';
+        selBox.style.left = '0';
+        selBox.style.top = '0';
+        selBox.style.opacity = '0';
+        selBox.value = address;
+        
+        document.body.appendChild(selBox);
+        selBox.focus();
+        selBox.select();
+
+        document.execCommand('copy');
+        document.body.removeChild(selBox);
+    }
+
     return (
         <>
             <Cover />
             <Box>
                 <Successimage src="/data/image/icon/success.png" />
                 <Titletext>성공!</Titletext>
-                <Linktext>https://www.bingo.com{address.address}</Linktext>
+                <Linktext>https://www.bingo.com{address}</Linktext>
                 <Buttonline>
-                    <Copybutton>링크 복사하기</Copybutton>
+                    <Copybutton onClick={CopytoClip}>링크 복사하기</Copybutton>
                     <Startbutton>빙고 하러가기</Startbutton>
                 </Buttonline>
             </Box>

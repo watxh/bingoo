@@ -122,7 +122,7 @@ const Makingsection = () => {
                 bingoarray={bingoarray}
                 changesuccess={changesuccess}
             />
-            {issuccess===1 ? <Success address = {address}/>:<></>}
+            {issuccess===1 ? <Success props = {address}/>:<></>}
         </>
     );
 }
