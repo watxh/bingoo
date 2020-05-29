@@ -11,7 +11,12 @@ const Playbingo = (
             <Subtitle subtitlecolor={data.data.subtitlecolor}>{data.data.subtitle}</Subtitle>
             <Bingoboxsection>
                 {data.data.bingoarray.map((word) => (
-                    <Bingobox>{word}</Bingobox>
+                    <>
+                        <Bingobox>
+                            {word}
+                            <Redcircle src="/data/image/icon/redcircle.png"/>
+                        </Bingobox>
+                    </>
                 ))}
             </Bingoboxsection>
         </Exbox>
@@ -66,5 +71,10 @@ const Bingoboxsection = styled.div`
     flex-direction:row;
     flex-wrap: wrap;
 `;
+
+const Redcircle = styled.img`
+    width:53px;
+    height:53px;
+`;  
 
 export default Playbingo;
