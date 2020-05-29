@@ -1,47 +1,30 @@
 import styled, { css } from "styled-components";
 import React, { Component, useState } from "react";
 import Bingobox from "../atoms/Bingobox"
-import download from "downloadjs"
-import * as htmlToImage from 'html-to-image';
 
-const Example = ({
-    title = { title },
-    subtitle = { subtitle },
-    backcolor = { backcolor },
-    titlecolor = { titlecolor },
-    subtitlecolor = { subtitlecolor },
-    bingoarray = { bingoarray }
-}) => {
+const Playbingo = (
+    data
+) => {
     return (
-
-        <All>
-            <Exbox backcolor={backcolor}>
-                <Title titlecolor={titlecolor}>{title}</Title>
-                <Subtitle subtitlecolor={subtitlecolor}>{subtitle}</Subtitle>
-                {console.log(bingoarray)}
-                <Bingoboxsection>
-                    {bingoarray.map(({word}) => (
-                        <Bingobox>{word}</Bingobox>
-                    ))}
-                </Bingoboxsection>
-            </Exbox>
-        </All>
-
-    );
+        <Exbox backcolor={data.data.backcolor}>
+            <Title titlecolor={data.data.titlecolor}>{data.data.title}</Title>
+            <Subtitle subtitlecolor={data.data.subtitlecolor}>{data.data.subtitle}</Subtitle>
+            <Bingoboxsection>
+                {data.data.bingoarray.map((word) => (
+                    <Bingobox>{word}</Bingobox>
+                ))}
+            </Bingoboxsection>
+        </Exbox>
+    )
 }
-
-const All = styled.div`
-    width:50%;
-    height:100%;
-`;
 
 const Exbox = styled.div`
     position:absolute;
-    left:25%;
+    left:50%;
     top:50%;
     background-color:#000000;
     ${({ backcolor }) => backcolor && css`
-        background-color:${backcolor.hex};
+        background-color:${backcolor};
   ` }
     width:375px;
     height:640px;
@@ -58,7 +41,7 @@ const Title = styled.div`
     font-family: 'Jua', sans-serif;
     color:#ffffff;
     ${({ titlecolor }) => titlecolor && css`
-        color:${titlecolor.hex};
+        color:${titlecolor};
   ` }
 `
 
@@ -84,4 +67,4 @@ const Bingoboxsection = styled.div`
     flex-wrap: wrap;
 `;
 
-export default Example;
+export default Playbingo;

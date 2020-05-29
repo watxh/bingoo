@@ -18,7 +18,7 @@ const Makingsection = () => {
     const [titlecolor, setTitlecolor] = useState("#ffffff");
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
 
-    const [bingoarray, setBingoarray] = useState([{value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}, {value:""}]);
+    const [bingoarray, setBingoarray] = useState([{word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}]);
 
     const [address, setAddress] = useState("");
     const [issuccess, setIssuccess] = useState(0);
@@ -46,7 +46,7 @@ const Makingsection = () => {
     const changebingoarray = (con, num) => {
         setBingoarray(() => {
             let newarray = [...bingoarray];
-            newarray[num] = { value: con };
+            newarray[num] = { word: con };
             return newarray;
         });
     }
@@ -64,22 +64,28 @@ const Makingsection = () => {
     };
 
     const postdata = async() =>{
-        const params = new URLSearchParams();
-
         var id = "/" + randomStr(5);
+        const params = new URLSearchParams({
+            id,
+            title,
+            subtitle,
+            backcolor: (Object.entries(backcolor)[1][1]),
+            titlecolor: (Object.entries(titlecolor)[1][1]),
+            subtitlecolor: (Object.entries(subtitlecolor)[1][1]),
+        });
 
-        params.append('id', id);
+        for(let i = 0; i < 25; i++){
+            if(bingoarray[i].word != undefined){
+                params.append('bingoarray', bingoarray[i].word);
+            }
+        }
+
+        /*params.append('id', id);
         params.append('title', title);
         params.append('subtitle', subtitle);
         params.append('backcolor', (Object.entries(backcolor)[1][1]));
         params.append('titlecolor', (Object.entries(titlecolor)[1][1]));
-        params.append('subtitlecolor', (Object.entries(subtitlecolor)[1][1]));
-
-        for(let i = 0; i < 25; i++){
-            if(bingoarray[i].value != undefined){
-                params.append('bingoarray', bingoarray[i].value);
-            }
-        }
+        params.append('subtitlecolor', (Object.entries(subtitlecolor)[1][1]));*/
 
         const a = await axios.post('http://localhost:3001/users/b', params);
 

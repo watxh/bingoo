@@ -16,7 +16,7 @@ const Routes = () =>{
 
     return(
         <Router>
-            <Route exact path="/" component={Maker}/>
+            <Route exact path="/make" component={Maker}/>
             {data.map((data) =>(
                 <>
                 <Route path={data.id} component={() => <Dobingo data={data}/>}/>
