@@ -1,23 +1,32 @@
 import styled, { css } from "styled-components";
 import React, { Component, useState } from "react";
 import Bingobox from "../atoms/Bingobox"
+import ReactDOM from "react-dom"
 
 const Playbingo = (
     data
 ) => {
+    const bb = document.getElementsByClassName("bingoBox");
+
+    const CreateCircle = (word, num) => {
+        ReactDOM.render((<>{word}<Redcircle src="/data/image/icon/redcircle.png" /></>), bb[num]);
+    }
+
     return (
         <Exbox backcolor={data.data.backcolor}>
             <Title titlecolor={data.data.titlecolor}>{data.data.title}</Title>
             <Subtitle subtitlecolor={data.data.subtitlecolor}>{data.data.subtitle}</Subtitle>
             <Bingoboxsection>
-                {data.data.bingoarray.map((word) => (
-                    <>
-                        <Bingobox>
-                            {word}
-                            <Redcircle src="/data/image/icon/redcircle.png"/>
-                        </Bingobox>
-                    </>
-                ))}
+                {function () {
+                    let rows = [];
+                    for (let i = 0; i < 25; i++) {
+                        rows.push(
+                            <Bingobox className="bingoBox" onClick={(() => { CreateCircle(data.data.bingoarray[i], i) })}>
+                                {data.data.bingoarray[i]}
+                            </Bingobox>)
+                    }
+                    return rows;
+                }()}
             </Bingoboxsection>
         </Exbox>
     )
@@ -73,8 +82,11 @@ const Bingoboxsection = styled.div`
 `;
 
 const Redcircle = styled.img`
-    width:53px;
-    height:53px;
-`;  
+    width:80px;
+    height:80px;
+    position:absolute;
+    margin-left:-14px;
+    margin-top:3px;
+`;
 
 export default Playbingo;
