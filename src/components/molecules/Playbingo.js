@@ -8,12 +8,83 @@ const Playbingo = (
 ) => {
     const bb = document.getElementsByClassName("bingoBox");
 
+    const [circled, setCircled] = useState([]);
+    const [bingoLine, setBingoLine] = useState([]);
+
     const CreateCircle = (word, num) => {
         ReactDOM.render((<>{word}<Redcircle src="/data/image/icon/redcircle.png" /></>), bb[num]);
+        if(circled[num] == undefined || circled[num].now == 0)
+        {
+            ReactDOM.render((<>{word}<Redcircle src="/data/image/icon/redcircle.png" /></>), bb[num]);
+            setCircled(() => {
+                let newarray = [...circled];
+                newarray[num] = { now:"1" }
+                return newarray;
+            })
+        }
+        else 
+        {
+            ReactDOM.render((<>{word}</>), bb[num]);
+            setCircled(() => {
+                let newarray = [...circled];
+                newarray[num] = { now:"0" }
+                return newarray;
+            })
+        }
+
+        CheckBingoX();
     }
 
+    const CheckBingoX = () => {
+
+        let num = 0;
+
+        for(let i = 0; i < 5; i++)
+        {
+            for(let j = 0; j < 5; j++)
+            {
+                if(circled[i*5+j] && circled[i*5+j].now === "1")
+                {
+                    num++;
+                }
+            }
+            if(num === 5)
+            {
+                setBingoLine(() => {
+                    let newarray = [...bingoLine];
+                    newarray[i] = { now:"1" }
+                    return newarray;
+                })
+            }
+            num = 0;
+        }
+
+        let num2 = 0;
+
+        for(let i = 0; i < 5; i++)
+        {
+            for(let j = 0; j < 5; j++)
+            {
+                if(circled[i+j*5] && circled[i+j*5].now === "1")
+                {
+                    num2++;
+                }
+            }
+            if(num2 === 5)
+            {
+                setBingoLine(() => {
+                    let newarray = [...bingoLine];
+                    newarray[i+5] = { now:"1" }
+                    return newarray;    
+                })
+            }
+            num2 = 0;
+        }
+    }
+    
+
     return (
-        <Exbox backcolor={data.data.backcolor}>
+        <Exbox backcolor={data.data.backcolor}>{console.log(bingoLine)}
             <Title titlecolor={data.data.titlecolor}>{data.data.title}</Title>
             <Subtitle subtitlecolor={data.data.subtitlecolor}>{data.data.subtitle}</Subtitle>
             <Bingoboxsection>
