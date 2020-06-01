@@ -13,21 +13,19 @@ const Playbingo = (
 
     const CreateCircle = (word, num) => {
         ReactDOM.render((<>{word}<Redcircle src="/data/image/icon/redcircle.png" /></>), bb[num]);
-        if(circled[num] == undefined || circled[num].now == 0)
-        {
+        if (circled[num] == undefined || circled[num].now == 0) {
             ReactDOM.render((<>{word}<Redcircle src="/data/image/icon/redcircle.png" /></>), bb[num]);
             setCircled(() => {
                 let newarray = [...circled];
-                newarray[num] = { now:"1" }
+                newarray[num] = { now: "1" }
                 return newarray;
             })
         }
-        else 
-        {
+        else {
             ReactDOM.render((<>{word}</>), bb[num]);
             setCircled(() => {
                 let newarray = [...circled];
-                newarray[num] = { now:"0" }
+                newarray[num] = { now: "0" }
                 return newarray;
             })
         }
@@ -39,49 +37,81 @@ const Playbingo = (
 
         let num = 0;
 
-        for(let i = 0; i < 5; i++)
+        for (let i = 0; i < 5; i++) //가로줄 빙고 체크
         {
-            for(let j = 0; j < 5; j++)
-            {
-                if(circled[i*5+j] && circled[i*5+j].now === "1")
-                {
+            for (let j = 0; j < 5; j++) {
+                if (circled[i * 5 + j] && circled[i * 5 + j].now === "1") {
                     num++;
                 }
             }
-            if(num === 5)
-            {
-                setBingoLine(() => {
-                    let newarray = [...bingoLine];
-                    newarray[i] = { now:"1" }
-                    return newarray;
-                })
+            if (num === 5) {
+                if (!bingoLine[i]) {
+                    setBingoLine(() => {
+                        let newarray = [...bingoLine];
+                        newarray[i] = { now: "1" }
+                        return newarray;
+                    })
+                }
             }
             num = 0;
         }
 
         let num2 = 0;
 
-        for(let i = 0; i < 5; i++)
+        for (let i = 0; i < 5; i++) //세로줄 빙고 체크
         {
-            for(let j = 0; j < 5; j++)
-            {
-                if(circled[i+j*5] && circled[i+j*5].now === "1")
-                {
+            for (let j = 0; j < 5; j++) {
+                if (circled[i + j * 5] && circled[i + j * 5].now === "1") {
                     num2++;
                 }
             }
-            if(num2 === 5)
-            {
-                setBingoLine(() => {
-                    let newarray = [...bingoLine];
-                    newarray[i+5] = { now:"1" }
-                    return newarray;    
-                })
+            if (num2 === 5) {
+                if (!bingoLine[i + 5]) {
+                    setBingoLine(() => {
+                        let newarray = [...bingoLine];
+                        newarray[i + 5] = { now: "1" }
+                        return newarray;
+                    })
+                }
             }
             num2 = 0;
         }
+
+        let num3 = 0;
+
+        for (let i = 0; i < 25; i += 6) { //대각선 왼쪽 위에서 오른쪽 아래
+            if (circled[i] && circled[i].now === "1") {
+                num3++;
+            }
+        }
+        if (num3 === 5) {
+            if(!bingoLine[10]) {
+                setBingoLine(() => {
+                    let newarray = [...bingoLine];
+                    newarray[10] = { now: "1" }
+                    return newarray;
+                })
+            }
+        }
+
+        let num4 = 0;
+
+        for (let i = 4; i < 25; i += 4) { //대각선 오른쪽 위에서 왼쪽 아래
+            if (circled[i] && circled[i].now === "1") {
+                num4++;
+            }
+        }
+        if (num4 === 5) {
+            if(!bingoLine[11]) {
+                setBingoLine(() => {
+                    let newarray = [...bingoLine];
+                    newarray[11] = { now: "1" }
+                    return newarray;
+                })
+            }
+        }
     }
-    
+
 
     return (
         <Exbox backcolor={data.data.backcolor}>{console.log(bingoLine)}
