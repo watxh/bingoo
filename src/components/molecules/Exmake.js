@@ -313,10 +313,14 @@ const Title = styled.div`
 const Titleinput = styled.input`
     margin-left:20px;
     margin-right:30px;
-    height:30px;
+    height:35px;
     width:300px;
     border:1.4px solid #B5B5B5;
     padding-left:10px;
+    outline:none;
+    border-style:none;
+    background-color:#ECECEC;
+    border-radius:9px;
 `
 
 const Titlename = styled.div`
@@ -340,10 +344,13 @@ const Subtitlename = styled.div`
 const Subtitleinput = styled.input`
     margin-left:20px;
     margin-right:10px;
-    height:30px;
+    height:35px;
     width:300px;
-    border:1.4px solid #B5B5B5;
+    border-style:none;
     padding-left:10px;
+    outline:none;
+    border-radius:9px;
+    background-color:#ECECEC;
 `
 
 const Rowcolumnsection = styled.div`

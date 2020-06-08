@@ -85,7 +85,7 @@ const Playbingo = (
             }
         }
         if (num3 === 5) {
-            if(!bingoLine[10]) {
+            if (!bingoLine[10]) {
                 setBingoLine(() => {
                     let newarray = [...bingoLine];
                     newarray[10] = { now: "1" }
@@ -102,7 +102,7 @@ const Playbingo = (
             }
         }
         if (num4 === 5) {
-            if(!bingoLine[11]) {
+            if (!bingoLine[11]) {
                 setBingoLine(() => {
                     let newarray = [...bingoLine];
                     newarray[11] = { now: "1" }
@@ -114,24 +114,38 @@ const Playbingo = (
 
 
     return (
-        <Exbox backcolor={data.data.backcolor}>{console.log(bingoLine)}
-            <Title titlecolor={data.data.titlecolor}>{data.data.title}</Title>
-            <Subtitle subtitlecolor={data.data.subtitlecolor}>{data.data.subtitle}</Subtitle>
-            <Bingoboxsection>
-                {function () {
-                    let rows = [];
-                    for (let i = 0; i < 25; i++) {
-                        rows.push(
-                            <Bingobox className="bingoBox" onClick={(() => { CreateCircle(data.data.bingoarray[i], i) })}>
-                                {data.data.bingoarray[i]}
-                            </Bingobox>)
-                    }
-                    return rows;
-                }()}
-            </Bingoboxsection>
-        </Exbox>
+        <>
+            <Exbox backcolor={data.data.backcolor}>{console.log(bingoLine)}
+                <Title titlecolor={data.data.titlecolor}>{data.data.title}</Title>
+                <Subtitle subtitlecolor={data.data.subtitlecolor}>{data.data.subtitle}</Subtitle>
+                <Bingoboxsection>
+                    {function () {
+                        let rows = [];
+                        for (let i = 0; i < 25; i++) {
+                            rows.push(
+                                <Bingobox className="bingoBox" onClick={(() => { CreateCircle(data.data.bingoarray[i], i) })}>
+                                    {data.data.bingoarray[i]}
+                                </Bingobox>)
+                        }
+                        return rows;
+                    }()}
+                </Bingoboxsection>
+
+            </Exbox>
+            <Container>
+                <Completebutton />
+            </Container>
+        </>
     )
 }
+
+const Container = styled.div`
+    width:100%;
+    display:flex;
+    text-align:right;
+    align-items:right;
+    justify-content:right;
+`
 
 const Exbox = styled.div`
     position:absolute;
@@ -188,6 +202,13 @@ const Redcircle = styled.img`
     position:absolute;
     margin-left:-14px;
     margin-top:3px;
+`;
+
+const Completebutton = styled.div`
+    width:100px;
+    height:30px;
+    background-color:#0037B6;
+
 `;
 
 export default Playbingo;
