@@ -14,7 +14,8 @@ router.post('/b', function(req, res, next){
         backcolor:req.body.backcolor,
         titlecolor:req.body.titlecolor,
         subtitlecolor:req.body.subtitlecolor,
-        bingoarray:req.body.bingoarray
+        bingoarray:req.body.bingoarray,
+        like:req.body.like,
         },
         function(err, user) {
             if (err) return res.status(500).send("생성 실패.");

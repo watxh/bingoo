@@ -4,6 +4,7 @@ import axios from "axios"
 
 import Dobingo from "../components/organisms/Dobingo"
 import Maker from "../components/pages/Maker"
+import Main from "../components/pages/Main"
 
 const Routes = () =>{
 
@@ -22,6 +23,7 @@ const Routes = () =>{
                 <Route path={data.id} component={() => <Dobingo data={data}/>}/>
                 </>
             ))}
+            <Route exact path="/" component={Main}/>
         </Router>
     )
 }

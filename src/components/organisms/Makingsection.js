@@ -26,6 +26,8 @@ const Makingsection = () => {
     const [rownum, setRownum] = useState("1");
     const [columnnum, setColumnnum] = useState("1");
 
+    const [like, setLike] = useState(4);
+
     const changetitle = (name) => {
         setTitle(name);
     }
@@ -91,6 +93,8 @@ const Makingsection = () => {
             }
         }
 
+        params.append('like', like);
+
         /*params.append('id', id);
         params.append('title', title);
         params.append('subtitle', subtitle);
@@ -98,8 +102,8 @@ const Makingsection = () => {
         params.append('titlecolor', (Object.entries(titlecolor)[1][1]));
         params.append('subtitlecolor', (Object.entries(subtitlecolor)[1][1]));*/
 
-        const a = await axios.post('http://localhost:3001/users/b', params);
-        
+        const a = await axios.post('http://localhost:3002/users/b', params);
+        console.log(a);
         setAddress(id);
 
         setIssuccess(1);
