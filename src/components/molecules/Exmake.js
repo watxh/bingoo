@@ -13,7 +13,9 @@ const Exmake = ({
     changesubtitlecolor,
     changebingoarray,
     bingoarray,
-    changesuccess
+    changesuccess,
+    rownum,
+    columnnum
 }) => {
 
     const [titlecolorclick, setTitlecolorclick] = useState(0);
@@ -24,8 +26,6 @@ const Exmake = ({
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
     const [subtitle, setSubtitle] = useState("");
 
-    const [rownum, setRownum] = useState("1");
-    const [columnnum, setColumnnum] = useState("1");
     const [contents, setContents] = useState("");
 
     const [backcolorclick, setBackcolorclick] = useState(0);
@@ -82,13 +82,13 @@ const Exmake = ({
         changesubtitle(e.target.value);
     }
 
-    const changerownum = (e) => {
-        setRownum(e.target.value);
-    }
+    // const changerownum = (e) => {
+    //     setRownum(e.target.value);
+    // }
 
-    const changecolumnnum = (e) => {
-        setColumnnum(e.target.value);
-    }
+    // const changecolumnnum = (e) => {
+    //     setColumnnum(e.target.value);
+    // }
 
     const changecontents = (e) => {
         setContents(e.target.value);
@@ -135,7 +135,7 @@ const Exmake = ({
                 </InsectionB>
 
                 <Rowcolumnsection>
-                    <Titlename>가로 : </Titlename>
+                    {/* <Titlename>가로 : </Titlename>
                     <Rowcolumndrop onChange={changerownum}>
                         <Rowcolumndown value="1">1</Rowcolumndown>
                         <Rowcolumndown value="2">2</Rowcolumndown>
@@ -151,7 +151,7 @@ const Exmake = ({
                         <Rowcolumndown value="3">3</Rowcolumndown>
                         <Rowcolumndown value="4">4</Rowcolumndown>
                         <Rowcolumndown value="5">5</Rowcolumndown>
-                    </Rowcolumndrop>
+                    </Rowcolumndrop> */}
                 </Rowcolumnsection>
                 <Positionsection>위치 : {rownum} X {columnnum}</Positionsection>
                 <Positioncontents>
@@ -315,11 +315,10 @@ const Titleinput = styled.input`
     margin-right:30px;
     height:35px;
     width:300px;
-    border:1.4px solid #B5B5B5;
     padding-left:10px;
     outline:none;
     border-style:none;
-    background-color:#ECECEC;
+    background-color:#F1F1F1;
     border-radius:9px;
 `
 
@@ -350,7 +349,7 @@ const Subtitleinput = styled.input`
     padding-left:10px;
     outline:none;
     border-radius:9px;
-    background-color:#ECECEC;
+    background-color:#F1F1F1;
 `
 
 const Rowcolumnsection = styled.div`

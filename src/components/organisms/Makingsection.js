@@ -23,6 +23,9 @@ const Makingsection = () => {
     const [address, setAddress] = useState("");
     const [issuccess, setIssuccess] = useState(0);
 
+    const [rownum, setRownum] = useState("1");
+    const [columnnum, setColumnnum] = useState("1");
+
     const changetitle = (name) => {
         setTitle(name);
     }
@@ -41,6 +44,14 @@ const Makingsection = () => {
 
     const changesubtitlecolor = (color) => {
         setSubtitlecolor(color);
+    }
+
+    const changecolnum = (e) => {
+        setColumnnum(e);
+    }
+
+    const changerownum = (e) => {
+        setRownum(e);
     }
 
     const changebingoarray = (con, num) => {
@@ -114,7 +125,10 @@ const Makingsection = () => {
                     backcolor={backcolor}
                     titlecolor={titlecolor}
                     subtitlecolor={subtitlecolor}
-                    bingoarray={bingoarray}>
+                    bingoarray={bingoarray}
+                    changerownum={changerownum}
+                    changecolnum={changecolnum}
+                    >
                 </Example>
             </div>
             <Centerline></Centerline>
@@ -127,6 +141,8 @@ const Makingsection = () => {
                 changebingoarray={changebingoarray}
                 bingoarray={bingoarray}
                 changesuccess={changesuccess}
+                rownum={rownum}
+                columnnum={columnnum}
             />
             {issuccess===1 ? <Success props = {address}/>:<></>}
         </>

@@ -10,19 +10,25 @@ const Example = ({
     backcolor = { backcolor },
     titlecolor = { titlecolor },
     subtitlecolor = { subtitlecolor },
-    bingoarray = { bingoarray }
+    bingoarray = { bingoarray },
+    changerownum = { changerownum },
+    changecolnum = { changecolnum }
 }) => {
+
     return (
 
         <All>
             <Exbox backcolor={backcolor}>
                 <Title titlecolor={titlecolor}>{title}</Title>
                 <Subtitle subtitlecolor={subtitlecolor}>{subtitle}</Subtitle>
-                {console.log(bingoarray)}
                 <Bingoboxsection>
-                    {bingoarray.map(({word}) => (
-                        <Bingobox>{word}</Bingobox>
-                    ))}
+                    {function() {
+                        let rows=[];
+                        for(let i = 0; i < 25; i++) {
+                            rows.push(<Bingobox onClick={function(){changerownum(i%5+1);changecolnum(parseInt(i/5)+1)}}>{bingoarray[i].word}</Bingobox>);
+                        }
+                        return rows;
+                    }()}
                 </Bingoboxsection>
             </Exbox>
         </All>

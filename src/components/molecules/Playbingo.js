@@ -112,6 +112,13 @@ const Playbingo = (
         }
     }
 
+    const FinishBingo = () => {
+        for(let i = 0; i < 25; i++) {
+            if(bingoLine[i] && bingoLine[i].now == 1){
+                console.log(i);
+            }
+        }
+    }
 
     return (
         <>
@@ -133,7 +140,9 @@ const Playbingo = (
 
             </Exbox>
             <Container>
-                <Completebutton />
+                <Completebutton onClick={FinishBingo}>
+                    완료
+                </Completebutton>
             </Container>
         </>
     )
@@ -141,10 +150,6 @@ const Playbingo = (
 
 const Container = styled.div`
     width:100%;
-    display:flex;
-    text-align:right;
-    align-items:right;
-    justify-content:right;
 `
 
 const Exbox = styled.div`
@@ -205,10 +210,17 @@ const Redcircle = styled.img`
 `;
 
 const Completebutton = styled.div`
-    width:100px;
-    height:30px;
+    width:140px;
+    height:40px;
     background-color:#0037B6;
-
+    border-radius:10px;
+    font-size:25px;
+    color:white;
+    font-family: 'Do Hyeon', sans-serif;
+    text-align:center;
+    line-height:40px;
+    margin-left:83%;
+    margin-top:40%;
 `;
 
 export default Playbingo;
