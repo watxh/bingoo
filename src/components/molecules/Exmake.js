@@ -32,11 +32,12 @@ const Exmake = ({
     const [backcolor, setBackcolor] = useState("#ffffff");
 
     useEffect(() => {
-        if ((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).value == undefined) {
+        if ((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).word == undefined) {
             setContents("");
         } else {
-            setContents((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).value);
+            setContents((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).word);
         }
+        
     }, [rownum, columnnum])
 
     const Buttonclose = () => {
