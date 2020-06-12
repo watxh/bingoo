@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
 import React, { Component, useState, useEffect } from "react";
+import { Link } from "react-router-dom"
 
 const Success = (
     props
@@ -26,6 +27,10 @@ const Success = (
         document.execCommand('copy');
         document.body.removeChild(selBox);
     }
+    
+    const changeLocation = () => {
+        window.location.href=({address}.address);
+    }
 
     return (
         <>
@@ -36,7 +41,7 @@ const Success = (
                 <Linktext>https://www.bingo.com{address}</Linktext>
                 <Buttonline>
                     <Copybutton onClick={CopytoClip}>링크 복사하기</Copybutton>
-                    <Startbutton>빙고 하러가기</Startbutton>
+                    <Startbutton onClick={changeLocation}>빙고 하러가기</Startbutton>
                 </Buttonline>
             </Box>
         </>

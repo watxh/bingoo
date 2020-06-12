@@ -198,7 +198,7 @@ const Cover = styled.div`
 `
 
 const Rgbbutton = styled.div`
-    margin-left:10px;
+    margin-left:20px;
     width:30px;
     height:30px;
     border:2px solid black;
@@ -222,7 +222,6 @@ const InfosectionB = styled.div`
 `;
 
 const Sectionname = styled.div`
-    color:#595959;
     margin-left:20px;
     font-size:18px;
     font-weight:600;
@@ -233,7 +232,7 @@ const Insection = styled.div`
     top:0px;
     width:100%;
     height:60px;
-    border-bottom:2px solid #B5B5B5;
+    border-bottom:2px solid;
     text-align:left;
     line-height:60px;
 `
@@ -243,8 +242,8 @@ const InsectionB = styled.div`
     top:0px;
     width:100%;
     height:60px;
-    border-bottom:2px solid #B5B5B5;
-    border-top:2px solid #B5B5B5;
+    border-bottom:2px solid;
+    border-top:2px solid;
     text-align:left;
     line-height:60px;
 `
@@ -258,19 +257,19 @@ const Savesection = styled.div`
 
 const Savebutton = styled.button`
     @font-face {
-        font-family: asdf;
+        font-family: DoHyeon;
         src: url('/data/font/DoHyeon-Regular.ttf');
     }
     width:120px;
     height:43px;
-    margin-top:90px;
+    margin-top:130px;
     margin-right:50px;
     background-color:#0037B6;
     color:white;
     border:0px;
     border-radius:7px;
     font-size:21px;
-    font-family: 'asdf';
+    font-family: 'DoHyeon';
     text-align:right;
     padding-right:10px;
 `;
@@ -285,9 +284,8 @@ const Saveimage = styled.img`
 
 const Positionsection = styled.div`
     margin-left:20px;
-    margin-top:20px;
     font-size:25px;
-    color:#595959;
+    font-family: 'Handon3gyeopsal600g';
 `;
 
 const Positioncontents = styled.div`
@@ -295,12 +293,13 @@ const Positioncontents = styled.div`
     margin-top:20px;
     display:flex;
     flex-direction:row;
+    font-family: 'Handon3gyeopsal600g';
 `;
 
 const Positioncontentsname = styled.div`
     font-size:20px;
-    color:#595959;
     margin-top:2px;
+    line-height:33px;
 `;
 
 const Title = styled.div`
@@ -309,6 +308,8 @@ const Title = styled.div`
     display:flex;
     flex-direction:row;
     line-height:30px;
+    font-family: 'Handon3gyeopsal600g';
+    color:black;
 `;
 
 const Titleinput = styled.input`
@@ -325,7 +326,6 @@ const Titleinput = styled.input`
 
 const Titlename = styled.div`
     font-size:20px;
-    color:#595959;
 `
 
 const Subtitle = styled.div`
@@ -334,16 +334,17 @@ const Subtitle = styled.div`
     display:flex;
     flex-direction:row;
     line-height:30px;
+    font-family: 'Handon3gyeopsal600g';
+    color:black;
 `;
 
 const Subtitlename = styled.div`
     font-size:20px;
-    color:#595959;
 `
 
 const Subtitleinput = styled.input`
     margin-left:20px;
-    margin-right:10px;
+    margin-right:12px;
     height:35px;
     width:300px;
     border-style:none;
@@ -360,15 +361,6 @@ const Rowcolumnsection = styled.div`
     flex-direction:row;
 `;
 
-const Rowcolumndrop = styled.select`
-    margin-left:10px;
-    margin-right:20px;
-`;
-
-const Rowcolumndown = styled.option`
-
-`;
-
 const Backcolor = styled.div`
     margin-top:30px;
     margin-left:11px;
@@ -379,7 +371,7 @@ const Backcolor = styled.div`
 
 const Backcolorname = styled.div`
     font-size:20px;
-    color:#595959;
+    font-family: 'Handon3gyeopsal600g';
 `
 
 export default Exmake;

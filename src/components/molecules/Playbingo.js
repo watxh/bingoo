@@ -122,7 +122,7 @@ const Playbingo = (
 
     return (
         <>
-            <Exbox backcolor={data.data.backcolor}>{console.log(bingoLine)}
+            <Exbox backcolor={data.data.backcolor}>
                 <Title titlecolor={data.data.titlecolor}>{data.data.title}</Title>
                 <Subtitle subtitlecolor={data.data.subtitlecolor}>{data.data.subtitle}</Subtitle>
                 <Bingoboxsection>

@@ -11,8 +11,8 @@ import * as htmlToImage from 'html-to-image';
 
 const Makingsection = () => {
 
-    const [title, setTitle] = useState("");
-    const [subtitle, setSubtitle] = useState("");
+    const [title, setTitle] = useState("제목");
+    const [subtitle, setSubtitle] = useState("부제목");
 
     const [backcolor, setBackcolor] = useState("#000000");
     const [titlecolor, setTitlecolor] = useState("#ffffff");
@@ -99,7 +99,7 @@ const Makingsection = () => {
         params.append('subtitlecolor', (Object.entries(subtitlecolor)[1][1]));*/
 
         const a = await axios.post('http://localhost:3001/users/b', params);
-
+        
         setAddress(id);
 
         setIssuccess(1);
@@ -153,7 +153,7 @@ const Centerline = styled.div`
     position:fixed;
     width:2.5px;
     height:100%;
-    background-color:#B5B5B5;
+    background-color:black;
     left:50%;
 `;
 
