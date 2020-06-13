@@ -7,9 +7,13 @@ const BoardCard = ({
 }
 ) => {
 
-    const Test = (num) => {
+    const SetComma = (num) => {
         var regexp = /\B(?=(\d{3})+(?!\d))/g;
         return num.toString().replace(regexp, ',');
+    }
+
+    const PlayGame = () => {
+        window.location.href=(data.id);
     }
 
     return (
@@ -22,8 +26,11 @@ const BoardCard = ({
         <SubtitleText>{data.subtitle}</SubtitleText>
         <LikeBox>
             <img src="/data/image/icon/Heart1.png" width="23" height="23"></img>
-            <LikeText>{Test(data.like)}</LikeText>
+            <LikeText>{SetComma(data.like)}</LikeText>
         </LikeBox>
+        <PlayBox>
+            <PlayButton onClick={PlayGame} src="/data/image/icon/play.png"></PlayButton>
+        </PlayBox>
     </Container>
     )
 }
@@ -33,7 +40,7 @@ const Container = styled.div`
     height:310px;
     margin-left:20px;
     margin-right:20px;
-    margin-bottom:70px;
+    margin-bottom:50px;
     border-radius:10px;
     box-shadow:5px 5px 7px #C6C6C6;
 `;
@@ -65,6 +72,11 @@ const SubtitleText = styled.div`
     font-size:16px;
     margin-left:30px;
     color:gray;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height:20px;
+    width:180px;
 `;
 
 const LikeBox = styled.div`
@@ -79,6 +91,20 @@ const LikeText = styled.div`
     color:red;
     font-family: 'Nanum Gothic', sans-serif;
     margin-left:10px;
+`;
+
+const PlayBox = styled.div`
+    width:260px;
+    display:flex;
+    justify-content:right;
+    position:relative;
+    bottom:35px;
+`;  
+
+const PlayButton = styled.img`
+    width:35px;
+    height:35px;
+    margin-left:210px;
 `;
 
 export default BoardCard;

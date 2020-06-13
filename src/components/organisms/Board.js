@@ -10,7 +10,7 @@ const Board = () =>{
 
     const getList = async() => {
         var testarray = [];
-        testarray = (await axios.get('http://localhost:3002/users/a')).data;
+        testarray = (await axios.get('http://localhost:3001/users/a')).data;
         function customsort(a,b){
             if(a.like == b.like){ return 0} return a.like > b.like ? -1 : 1;
         }
