@@ -96,6 +96,14 @@ const Exmake = ({
         changebingoarray(e.target.value, (columnnum - 1) * 5 + (rownum - 1));
     }
 
+    const handleClick = event => {
+        var button = document.getElementById('hiddenbutton')
+        button.click();
+        
+        document.getElementById("upload-name").value = "My value";
+        
+    };
+
     return (
         <All>
             <Infosection>
@@ -126,6 +134,15 @@ const Exmake = ({
                     <Rgbbutton backcolor={backcolor} onClick={Backcolorclick} />
                     {backcolorclick ? <PopoverB><Cover onClick={Buttonclose}></Cover><ChromePicker color={backcolor} onChange={changebackcolorh} /></PopoverB> : <></>}
                 </Backcolor>
+
+                <TitleImage>
+                    <TitleImageText>
+                        대표 사진
+                    </TitleImageText>
+                    <input type="file" style={{display:'none'}} id="hiddenbutton" class="upload-hidden"/>
+                    <TitleImageInput id="upload-name" value="파일선택" disabled="disabled" />
+                    <TitleImageButton onClick={handleClick}>업로드</TitleImageButton>
+                </TitleImage>
             </Infosection>
 
             <InfosectionB>
@@ -135,26 +152,8 @@ const Exmake = ({
                     </Sectionname>
                 </InsectionB>
 
-                <Rowcolumnsection>
-                    {/* <Titlename>가로 : </Titlename>
-                    <Rowcolumndrop onChange={changerownum}>
-                        <Rowcolumndown value="1">1</Rowcolumndown>
-                        <Rowcolumndown value="2">2</Rowcolumndown>
-                        <Rowcolumndown value="3">3</Rowcolumndown>
-                        <Rowcolumndown value="4">4</Rowcolumndown>
-                        <Rowcolumndown value="5">5</Rowcolumndown>
-                    </Rowcolumndrop>
-
-                    <Titlename>세로 : </Titlename>
-                    <Rowcolumndrop onChange={changecolumnnum}>
-                        <Rowcolumndown value="1">1</Rowcolumndown>
-                        <Rowcolumndown value="2">2</Rowcolumndown>
-                        <Rowcolumndown value="3">3</Rowcolumndown>
-                        <Rowcolumndown value="4">4</Rowcolumndown>
-                        <Rowcolumndown value="5">5</Rowcolumndown>
-                    </Rowcolumndrop> */}
-                </Rowcolumnsection>
                 <Positionsection>위치 : {rownum} X {columnnum}</Positionsection>
+
                 <Positioncontents>
                     <Positioncontentsname>내용</Positioncontentsname>
                     <Titleinput placeholder="내용을 입력하세요" type="text" value={contents} onChange={changecontents} />
@@ -239,7 +238,7 @@ const Insection = styled.div`
 
 const InsectionB = styled.div`
     position:relative;
-    top:0px;
+    top:20px;
     width:100%;
     height:60px;
     border-bottom:2px solid;
@@ -284,6 +283,7 @@ const Saveimage = styled.img`
 
 const Positionsection = styled.div`
     margin-left:20px;
+    margin-top:40px;
     font-size:25px;
     font-family: 'Handon3gyeopsal600g';
 `;
@@ -367,11 +367,44 @@ const Backcolor = styled.div`
     display:flex;
     flex-direction:row;
     line-height:30px;
-`;
+`
 
 const Backcolorname = styled.div`
     font-size:20px;
     font-family: 'Handon3gyeopsal600g';
+`
+
+const TitleImage = styled.div`
+    margin-top:20px;
+    margin-left:10px;
+    display:flex;
+    flex-direction:row;
+`
+
+const TitleImageText = styled.div`
+    margin-right:20px;
+    font-size:20px;
+    font-family: 'Handon3gyeopsal600g';
+    line-height:28px;
+`
+
+const TitleImageButton = styled.button`
+    border-style:none;
+    outline:none;
+    border-radius:20px;
+    height:30px;
+    width:70px;
+    background-color:#6F6F6F;
+    color:white;
+    font-family: 'Handon3gyeopsal600g';
+    font-size:15px;
+`
+const TitleImageInput = styled.input`
+    background-color:transparent;
+    border:1.5px solid gray;
+    padding-left:10px;
+    border-radius:10px;
+    margin-right:10px;
 `
 
 export default Exmake;
