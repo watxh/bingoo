@@ -25,6 +25,7 @@ const Board = () =>{
                     <PopularButton>인기순</PopularButton>
                     <PopularButton>최신순</PopularButton>
                     <SearchInput placeholder="제목을 입력하세요"></SearchInput>
+                    <SearchButton>검색</SearchButton>
                 </TopLine>
                 <CardList>
                     {data.map((data) => (
@@ -40,6 +41,7 @@ const Container = styled.div`
     width:100%;
     justify-content:center;
     display:flex;
+    flex-direction:column;
 `;
 
 const CardList = styled.div`
@@ -68,6 +70,7 @@ const TopLine = styled.div`
     display:flex;
     flex-direction:row;
     margin-left:30px;
+    margin-bottom:50px;
 `
 
 const SearchInput = styled.input`
@@ -82,6 +85,21 @@ const SearchInput = styled.input`
     font-family: 'Noto Sans KR', sans-serif;
     font-weight:900;
     font-size:15px;
+`
+
+const SearchButton = styled.div`
+    position:relative;
+    right:20px;
+    background-color:red;
+    color:white;
+    width:70px;
+    height:37px;
+    text-align:center;
+    line-height:35px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:900;
+    font-size:18px;
+    border-radius:12px;
 `
 
 export default Board;
