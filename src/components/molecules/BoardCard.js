@@ -20,7 +20,7 @@ const BoardCard = ({
     <Container>
 
         <MainImage>
-            <img src="/data/image/test/wak.jpg" width="160" height="190"></img>
+            <img src={data.imageURL} width="160" height="190"></img>
         </MainImage>
         <TitleText>{data.title}</TitleText>
         <SubtitleText>{data.subtitle}</SubtitleText>

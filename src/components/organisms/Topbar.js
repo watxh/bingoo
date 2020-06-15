@@ -2,13 +2,24 @@ import styled from "styled-components";
 import React, { Component } from "react";
 
 const Topbar = () => {
+
+    const Making = () => {
+        window.location.href="/make";
+    }
+
+    const GoBingo = () => {
+        window.location.href="/";
+    }
+
     return (
         <Bar>
             <Barstyle>
                 <Logo>
                     <Name>bingo</Name>
-                    <Logot></Logot>
+                    <Logot/>
                 </Logo>
+                <GotoBingo onClick={GoBingo}>빙고 하러가기</GotoBingo>
+                <GotoBingo onClick={Making}>빙고 만들기</GotoBingo>
             </Barstyle>
         </Bar>
     );
@@ -17,7 +28,6 @@ const Topbar = () => {
 const Barstyle = styled.div`
     width:100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
@@ -57,6 +67,15 @@ const Name = styled.div`
     font-size: 40px;
     font-family: 'Baloo 2', cursive;
     font-weight:600;
+`
+
+const GotoBingo = styled.div`
+    margin-left:40px;
+    height:100%;
+    width:100px;
+    line-height:32.5px;
+    font-family: 'Handon3gyeopsal600g';
+    cursor:pointer;
 `
 
 export default Topbar;

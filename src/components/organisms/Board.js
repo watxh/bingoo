@@ -21,7 +21,11 @@ const Board = () =>{
     return (
         <>{<button onClick={getList}></button>}
             <Container>
-                
+                <TopLine>
+                    <PopularButton>인기순</PopularButton>
+                    <PopularButton>최신순</PopularButton>
+                    <SearchInput placeholder="제목을 입력하세요"></SearchInput>
+                </TopLine>
                 <CardList>
                     {data.map((data) => (
                         <BoardCard data={data}></BoardCard>
@@ -44,6 +48,40 @@ const CardList = styled.div`
     flex-wrap:wrap;
     justify-content:center;
     width:1500px;
-`; 
+`
+
+const PopularButton = styled.div`
+    background-color:red;
+    width:80px;
+    height:35px;
+    color:white;
+    border-radius:8px;
+    line-height:33px;
+    text-align:center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:900;
+    font-size:17px;
+`
+
+const TopLine = styled.div`
+    width:80%;
+    display:flex;
+    flex-direction:row;
+    margin-left:30px;
+`
+
+const SearchInput = styled.input`
+    width:700px;
+    height:35px;
+    background-color:#F1F1F1;
+    border-radius:12px;
+    border-style:none;
+    outline:none;
+    margin-left:200px;
+    padding-left:20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:900;
+    font-size:15px;
+`
 
 export default Board;

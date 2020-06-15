@@ -23,6 +23,7 @@ router.post('/b', function(req, res, next){
         backcolor:req.body.backcolor,
         titlecolor:req.body.titlecolor,
         subtitlecolor:req.body.subtitlecolor,
+        imageURL:req.body.imageURL,
         bingoarray:req.body.bingoarray,
         like:req.body.like,
         },

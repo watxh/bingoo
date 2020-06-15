@@ -8,6 +8,9 @@ import Success from "../molecules/Success"
 
 import download from "downloadjs"
 import * as htmlToImage from 'html-to-image';
+import moment from "moment"
+
+import { storage } from '../../firebase'
 
 const Makingsection = () => {
 
@@ -25,6 +28,9 @@ const Makingsection = () => {
 
     const [rownum, setRownum] = useState("1");
     const [columnnum, setColumnnum] = useState("1");
+
+    const [image, setImage] = useState("");
+    const [imageURL, setImageURL] = useState("");
 
     const [like, setLike] = useState(4);
 
@@ -64,8 +70,8 @@ const Makingsection = () => {
         });
     }
 
-    const changesuccess = () =>{
-        postdata();
+    const changesuccess = (e) =>{
+        imageStorage(e);
     }
 
     function randomStr(m) {
@@ -76,7 +82,28 @@ const Makingsection = () => {
         return s;
     };
 
-    const postdata = async() =>{
+    const imageStorage = async(e) => {
+        var name = moment().format('YYYYMMDDHHmmss') + "_" + e.name;
+        const uploadTask = storage.ref(`images/${name}`).put(e);
+        uploadTask.on(
+            "state_changed",
+            snapshot=> {},
+            error => {
+                console.log(error);
+            },
+            ()=>{
+                storage
+                    .ref("images")
+                    .child(name)
+                    .getDownloadURL()
+                    .then(url => {
+                        postdata(url);
+                    })
+            }
+        )
+    }
+
+    const postdata = async(url) =>{
         var id = "/" + randomStr(5);
         const params = new URLSearchParams({
             id,
@@ -85,6 +112,7 @@ const Makingsection = () => {
             backcolor: (Object.entries(backcolor)[1][1]),
             titlecolor: (Object.entries(titlecolor)[1][1]),
             subtitlecolor: (Object.entries(subtitlecolor)[1][1]),
+            imageURL: url,
         });
 
         for(let i = 0; i < 25; i++){

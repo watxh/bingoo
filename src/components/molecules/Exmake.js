@@ -31,6 +31,8 @@ const Exmake = ({
     const [backcolorclick, setBackcolorclick] = useState(0);
     const [backcolor, setBackcolor] = useState("#ffffff");
 
+    const [image, setImage] = useState(null);
+
     useEffect(() => {
         if ((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).word == undefined) {
             setContents("");
@@ -96,13 +98,20 @@ const Exmake = ({
         changebingoarray(e.target.value, (columnnum - 1) * 5 + (rownum - 1));
     }
 
+    const changeImage = (e) => {
+        setImage(e.target.files[0]);
+    }
+
     const handleClick = event => {
         var button = document.getElementById('hiddenbutton')
         button.click();
-        
-        document.getElementById("upload-name").value = "My value";
-        
     };
+
+    useEffect(() => {
+        if(image!==null){
+            document.getElementById("upload-name").value = image.name;
+        }
+    }, [image])
 
     return (
         <All>
@@ -139,7 +148,7 @@ const Exmake = ({
                     <TitleImageText>
                         대표 사진
                     </TitleImageText>
-                    <input type="file" style={{display:'none'}} id="hiddenbutton" class="upload-hidden"/>
+                    <input type="file" style={{display:'none'}} id="hiddenbutton" class="upload-hidden" onChange={changeImage}/>
                     <TitleImageInput id="upload-name" value="파일선택" disabled="disabled" />
                     <TitleImageButton onClick={handleClick}>업로드</TitleImageButton>
                 </TitleImage>
@@ -161,7 +170,7 @@ const Exmake = ({
 
                 <Savesection>
                     <Saveimage src="/data/image/icon/download.png" />
-                    <Savebutton onClick={changesuccess}>저장하기</Savebutton>
+                    <Savebutton onClick={()=>{changesuccess(image)}}>저장하기</Savebutton>
                 </Savesection>
             </InfosectionB>
             </All>

@@ -13,7 +13,7 @@ const Test = () => {
         setImage(e.target.files[0]);
     }
 
-    const onClick = async () => {
+    const onClick = async() => {
         // const formData = new FormData();
         // formData.append('file', img);
         // // 서버의 upload API 호출
@@ -29,7 +29,7 @@ const Test = () => {
             ()=>{
                 storage
                     .ref("images")
-                    .child(image.name)
+                    .child(moment().format('YYYYMMDDHHmmss') + "_" + image.name)
                     .getDownloadURL()
                     .then(url => {
                         console.log(url);
