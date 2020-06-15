@@ -4,33 +4,58 @@ import axios from 'axios';
 
 import BoardCard from "../molecules/BoardCard"
 
-const Board = () =>{
+const Board = () => {
 
     const [data, setData] = useState([]);
 
     const [sort, setSort] = useState("1");
 
-    const getList = async() => {
+    const [search, setSearch] = useState("");
+
+    const getList = async () => {
         var testarray = [];
         testarray = (await axios.get('http://localhost:3001/users/a')).data;
-        function customsort(a,b){
-            if(a.like == b.like){ return 0} return a.like > b.like ? -1 : 1;
+
+        function customsort(a, b) {
+            if (a.like == b.like) { return 0 } return a.like > b.like ? -1 : 1;
         }
         testarray.sort(customsort);
+        let len = testarray.length;
+        console.log(search);
+        if (search !== "") {
+            for (let i = 0; i < len; i++) {
+                if (testarray[i].title && testarray[i].title !== search) {
+                    testarray.splice(i, 1);
+                    i--;
+                    len--;
+                }
+            }
+        }
         setData(testarray);
+        console.log(testarray);
     }
 
     const changeSort = (e) => {
         setSort(e);
     }
 
+    const changeSearch = (e) => {
+        setSearch(e.target.value);
+    }
+
+    const goSearch = (event) => {
+        if (event.key === 'Enter') {
+            getList();
+        }
+    }
+
     return (
-        <>{<button onClick={getList}></button>}
+        <>
             <Container>
                 <TopLine>
-                    <PopularButton color={sort} onClick={()=>{changeSort(1)}}>인기순</PopularButton>
-                    <PopularButton color={!sort} onClick={()=>{changeSort(0)}}>최신순</PopularButton>
-                    <SearchInput placeholder="제목을 입력하세요"></SearchInput>
+                    <PopularButton color={sort} onClick={() => { changeSort(1) }}>인기순</PopularButton>
+                    <PopularButton color={!sort} onClick={() => { changeSort(0) }}>최신순</PopularButton>
+                    <SearchInput placeholder="제목을 입력하세요" onKeyPress={goSearch} onChange={changeSearch}></SearchInput>
                     <SearchButton>검색</SearchButton>
                 </TopLine>
                 <CardList>
@@ -64,12 +89,13 @@ const TopLine = styled.div`
     flex-direction:row;
     margin-left:30px;
     margin-bottom:50px;
+    margin-top:20px;
 `
 
 const PopularButton = styled.div`
     background-color:#F0F0F0;
     color:black;
-    ${({color}) => color && css`
+    ${({ color }) => color && css`
         background-color: red;
         color:white
     `};
