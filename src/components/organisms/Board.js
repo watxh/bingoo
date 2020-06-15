@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import React, { Component, useState } from "react";
 import axios from 'axios';
 
@@ -7,6 +7,8 @@ import BoardCard from "../molecules/BoardCard"
 const Board = () =>{
 
     const [data, setData] = useState([]);
+
+    const [sort, setSort] = useState("1");
 
     const getList = async() => {
         var testarray = [];
@@ -18,12 +20,16 @@ const Board = () =>{
         setData(testarray);
     }
 
+    const changeSort = (e) => {
+        setSort(e);
+    }
+
     return (
         <>{<button onClick={getList}></button>}
             <Container>
                 <TopLine>
-                    <PopularButton>인기순</PopularButton>
-                    <PopularButton>최신순</PopularButton>
+                    <PopularButton color={sort} onClick={()=>{changeSort(1)}}>인기순</PopularButton>
+                    <PopularButton color={!sort} onClick={()=>{changeSort(0)}}>최신순</PopularButton>
                     <SearchInput placeholder="제목을 입력하세요"></SearchInput>
                     <SearchButton>검색</SearchButton>
                 </TopLine>
@@ -52,19 +58,6 @@ const CardList = styled.div`
     width:1500px;
 `
 
-const PopularButton = styled.div`
-    background-color:red;
-    width:80px;
-    height:35px;
-    color:white;
-    border-radius:8px;
-    line-height:33px;
-    text-align:center;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight:900;
-    font-size:17px;
-`
-
 const TopLine = styled.div`
     width:80%;
     display:flex;
@@ -73,8 +66,26 @@ const TopLine = styled.div`
     margin-bottom:50px;
 `
 
+const PopularButton = styled.div`
+    background-color:#F0F0F0;
+    color:black;
+    ${({color}) => color && css`
+        background-color: red;
+        color:white
+    `};
+    width:80px;
+    height:35px;
+    border-radius:8px;
+    line-height:33px;
+    text-align:center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:900;
+    font-size:17px;
+    cursor:pointer;
+`
+
 const SearchInput = styled.input`
-    width:700px;
+    width:680px;
     height:35px;
     background-color:#F1F1F1;
     border-radius:12px;
