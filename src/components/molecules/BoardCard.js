@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import React, { Component, useState } from "react";
 import axios from 'axios';
 
@@ -7,6 +7,8 @@ const BoardCard = ({
 }
 ) => {
 
+    const [press, setPress] = useState(0);
+
     const SetComma = (num) => {
         var regexp = /\B(?=(\d{3})+(?!\d))/g;
         return num.toString().replace(regexp, ',');
@@ -14,6 +16,15 @@ const BoardCard = ({
 
     const PlayGame = () => {
         window.location.href=(data.id);
+    }
+
+    const test = () => {
+        if(press===0){
+            setPress(1);
+        }
+        else{
+            setPress(0);
+        }
     }
 
     return (
@@ -25,7 +36,10 @@ const BoardCard = ({
         <TitleText>{data.title}</TitleText>
         <SubtitleText>{data.subtitle}</SubtitleText>
         <LikeBox>
-            <img src="/data/image/icon/Heart1.png" width="23" height="23"></img>
+            {press===0
+                ? <LikeImage src="/data/image/icon/Heart1.png" width="23" height="23" onClick={test} press={press}></LikeImage>
+                : <LikeImage src="/data/image/icon/Heart2.png" width="23" height="23" onClick={test} press={press}></LikeImage>
+            }
             <LikeText>{SetComma(data.like)}</LikeText>
         </LikeBox>
         <PlayBox>
@@ -34,6 +48,18 @@ const BoardCard = ({
     </Container>
     )
 }
+
+const HeartBig = keyframes`
+  0% {
+    transform:scale(1.0);
+  }
+  50% {
+    transform:scale(1.13);
+  }
+  100% {
+    transform:scale(1.0);
+  }
+`
 
 const Container = styled.div`
     width:260px;
@@ -85,6 +111,7 @@ const LikeBox = styled.div`
     flex-direction:row;
     margin-left:10px;
     line-height:19px;
+    z-index:1;
 `;
 
 const LikeText = styled.div`
@@ -93,18 +120,24 @@ const LikeText = styled.div`
     margin-left:10px;
 `;
 
+const LikeImage = styled.img`
+    ${({press}) =>  press && css`
+        animation: ${HeartBig} 0.15s both;
+  ` }
+`
+
 const PlayBox = styled.div`
-    width:260px;
     display:flex;
     justify-content:right;
     position:relative;
     bottom:35px;
+    margin-left:210px;
 `;  
 
 const PlayButton = styled.img`
     width:35px;
     height:35px;
-    margin-left:210px;
+    z-index:10;
 `;
 
 export default BoardCard;
