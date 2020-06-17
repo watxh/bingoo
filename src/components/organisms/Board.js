@@ -24,7 +24,7 @@ const Board = () => {
         console.log(search);
         if (search !== "") {
             for (let i = 0; i < len; i++) {
-                if (testarray[i].title && testarray[i].title !== search) {
+                if (testarray[i].title && !testarray[i].title.includes(search)) {
                     testarray.splice(i, 1);
                     i--;
                     len--;
@@ -50,21 +50,19 @@ const Board = () => {
     }
 
     return (
-        <>
-            <Container>
-                <TopLine>
-                    <PopularButton color={sort} onClick={() => { changeSort(1) }}>인기순</PopularButton>
-                    <PopularButton color={!sort} onClick={() => { changeSort(0) }}>최신순</PopularButton>
-                    <SearchInput placeholder="제목을 입력하세요" onKeyPress={goSearch} onChange={changeSearch}></SearchInput>
-                    <SearchButton>검색</SearchButton>
-                </TopLine>
-                <CardList>
-                    {data.map((data) => (
-                        <BoardCard data={data}></BoardCard>
-                    ))}
-                </CardList>
-            </Container>
-        </>
+        <Container>
+            <TopLine>
+                <PopularButton color={sort} onClick={() => { changeSort(1) }}>인기순</PopularButton>
+                <PopularButton color={!sort} onClick={() => { changeSort(0) }}>최신순</PopularButton>
+                <SearchInput placeholder="제목을 입력하세요" onKeyPress={goSearch} onChange={changeSearch}></SearchInput>
+                <SearchButton>검색</SearchButton>
+            </TopLine>
+            <CardList>
+                {data.map((data) => (
+                    <BoardCard data={data}></BoardCard>
+                ))}
+            </CardList>
+        </Container>
     )
 }
 
@@ -79,7 +77,7 @@ const CardList = styled.div`
     display:flex;
     flex-direction:row;
     flex-wrap:wrap;
-    justify-content:center;
+    justify-content:left;
     width:1500px;
 `
 
@@ -108,7 +106,7 @@ const PopularButton = styled.div`
     font-weight:900;
     font-size:17px;
     cursor:pointer;
-`
+`;
 
 const SearchInput = styled.input`
     width:680px;
