@@ -3,7 +3,7 @@ import React, { Component, useState } from "react";
 import axios from 'axios';
 
 const BoardCard = ({ 
-    data 
+    data
 }
 ) => {
 
@@ -18,13 +18,22 @@ const BoardCard = ({
         window.location.href=(data.id);
     }
 
-    const test = () => {
+    const ChangeLike = () => {
         if(press===0){
             setPress(1);
+            SetLike(1);
         }
         else{
             setPress(0);
+            SetLike(0);
         }
+    }
+
+    const SetLike = async(e) => {
+        const params = new URLSearchParams({
+            like:data.like+e,
+        })
+        const a = await axios.patch(`http://localhost:3001/users/a/${data._id}`, params);
     }
 
     return (
@@ -37,10 +46,15 @@ const BoardCard = ({
         <SubtitleText>{data.subtitle}</SubtitleText>
         <LikeBox>
             {press===0
-                ? <LikeImage src="/data/image/icon/Heart1.png" width="23" height="23" onClick={test} press={press}></LikeImage>
-                : <LikeImage src="/data/image/icon/Heart2.png" width="23" height="23" onClick={test} press={press}></LikeImage>
+                ? <LikeImage src="/data/image/icon/Heart1.png" width="23" height="23" onClick={ChangeLike} press={press}></LikeImage>
+                : <LikeImage src="/data/image/icon/Heart2.png" width="23" height="23" onClick={ChangeLike} press={press}></LikeImage>
             }
-            <LikeText>{SetComma(data.like)}</LikeText>
+            <LikeText>
+                {press===1
+                ?SetComma(data.like+1)
+                :SetComma(data.like)
+                }
+                </LikeText>
         </LikeBox>
         <PlayBox>
             <PlayButton onClick={PlayGame} src="/data/image/icon/play.png"></PlayButton>
