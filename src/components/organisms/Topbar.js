@@ -11,10 +11,14 @@ const Topbar = () => {
         window.location.href="/";
     }
 
+    const GoHome = () => {
+        window.location.href="/";
+    }
+
     return (
         <Bar>
             <Barstyle>
-                <Logo>
+                <Logo onClick={GoHome}>
                     <Name>bingo</Name>
                     <Logot/>
                 </Logo>

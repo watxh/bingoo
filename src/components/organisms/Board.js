@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import axios from 'axios';
 
 import BoardCard from "../molecules/BoardCard"
@@ -8,20 +8,29 @@ const Board = () => {
 
     const [data, setData] = useState([]);
 
-    const [sort, setSort] = useState("1");
+    const [sort, setSort] = useState(1);
 
     const [search, setSearch] = useState("");
 
-    const getList = async () => {
+    useEffect(()=>{
+        getList(1);
+    },[])
+
+    const getList = async (e) => {
         var testarray = [];
         testarray = (await axios.get('http://localhost:3001/users/a')).data;
 
-        function customsort(a, b) {
+        function timesort(a, b) {
+            if (a.time == b.time) { return 0 } return a.time > b.time ? -1 : 1;
+        }
+        function popularsort(a, b) {
             if (a.like == b.like) { return 0 } return a.like > b.like ? -1 : 1;
         }
-        testarray.sort(customsort);
+        if(e) testarray.sort(popularsort);
+        else testarray.sort(timesort);
+        
         let len = testarray.length;
-        console.log(search);
+        //console.log(testarray[0].time < testarray[1].time);
         if (search !== "") {
             for (let i = 0; i < len; i++) {
                 if (testarray[i].title && !testarray[i].title.includes(search)) {
@@ -32,11 +41,11 @@ const Board = () => {
             }
         }
         setData(testarray);
-        console.log(testarray);
     }
 
     const changeSort = (e) => {
         setSort(e);
+        getList(e);
     }
 
     const changeSearch = (e) => {
@@ -45,7 +54,7 @@ const Board = () => {
 
     const goSearch = (event) => {
         if (event.key === 'Enter') {
-            getList();
+            getList(sort);
         }
     }
 

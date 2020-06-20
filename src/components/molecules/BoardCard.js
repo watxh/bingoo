@@ -38,7 +38,6 @@ const BoardCard = ({
 
     return (
     <Container>
-
         <MainImage>
             <img src={data.imageURL} width="160" height="190"></img>
         </MainImage>

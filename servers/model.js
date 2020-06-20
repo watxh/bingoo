@@ -17,6 +17,7 @@ var testSchema = mongoose.Schema({
     imageURL:String,
     bingoarray:Array,
     like:Number,
+    time:String,
 });
 
 mongoose.model("dimigo", testSchema, "dimigo");

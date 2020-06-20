@@ -19,6 +19,7 @@ router.post('/b', function (req, res, next) {
         imageURL: req.body.imageURL,
         bingoarray: req.body.bingoarray,
         like: req.body.like,
+        time:moment().format(),
     },
         function (err, user) {
             if (err) return res.status(500).send("생성 실패.");
