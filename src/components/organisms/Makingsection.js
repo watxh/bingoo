@@ -29,10 +29,9 @@ const Makingsection = () => {
     const [rownum, setRownum] = useState("1");
     const [columnnum, setColumnnum] = useState("1");
 
-    const [image, setImage] = useState("");
-    const [imageURL, setImageURL] = useState("");
-
     const [like, setLike] = useState(4);
+
+    const [backImage, setBackImage] = useState(null);
 
     const changetitle = (name) => {
         setTitle(name);
@@ -68,6 +67,10 @@ const Makingsection = () => {
             newarray[num] = { word: con };
             return newarray;
         });
+    }
+
+    const changebackimage = (e) => {
+        setBackImage(e);
     }
 
     const changesuccess = (e) =>{
@@ -160,6 +163,7 @@ const Makingsection = () => {
                     bingoarray={bingoarray}
                     changerownum={changerownum}
                     changecolnum={changecolnum}
+                    backImage={backImage}
                     >
                 </Example>
             </div>
@@ -171,6 +175,7 @@ const Makingsection = () => {
                 changetitlecolor={changetitlecolor}
                 changesubtitlecolor={changesubtitlecolor}
                 changebingoarray={changebingoarray}
+                changebackimage={changebackimage}
                 bingoarray={bingoarray}
                 changesuccess={changesuccess}
                 rownum={rownum}

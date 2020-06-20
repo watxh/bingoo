@@ -12,6 +12,7 @@ const Exmake = ({
     changetitlecolor,
     changesubtitlecolor,
     changebingoarray,
+    changebackimage,
     bingoarray,
     changesuccess,
     rownum,
@@ -32,6 +33,7 @@ const Exmake = ({
     const [backcolor, setBackcolor] = useState("#ffffff");
 
     const [image, setImage] = useState(null);
+    const [backImage, setBackImage] = useState(null);
 
     useEffect(() => {
         if ((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).word == undefined) {
@@ -46,6 +48,13 @@ const Exmake = ({
         setTitlecolorclick(0);
         setSubtitlecolorclick(0);
         setBackcolorclick(0);
+    }
+
+    const BackButtonclose = () => {
+        setTitlecolorclick(0);
+        setSubtitlecolorclick(0);
+        setBackcolorclick(0);
+        changebackimage(null);
     }
 
     const Backcolorclick = () => {
@@ -102,8 +111,19 @@ const Exmake = ({
         setImage(e.target.files[0]);
     }
 
+    const changeBackImage = (e) => {
+        setBackImage(e.target.files[0]);
+        changebackimage(e.target.files[0]);
+        changebackcolor(null);
+    }
+
     const handleClick = event => {
         var button = document.getElementById('hiddenbutton')
+        button.click();
+    };
+
+    const backhandleClick = event => {
+        var button = document.getElementById('hiddenbackbutton')
         button.click();
     };
 
@@ -112,6 +132,12 @@ const Exmake = ({
             document.getElementById("upload-name").value = image.name;
         }
     }, [image])
+
+    useEffect(()=>{
+        if(backImage!==null && backImage!== undefined){
+            document.getElementById("upload-backname").value = backImage.name;
+        }
+    }, [backImage])
 
     return (
         <All>
@@ -141,7 +167,10 @@ const Exmake = ({
                 <Backcolor>
                     <Backcolorname>배경색</Backcolorname>
                     <Rgbbutton backcolor={backcolor} onClick={Backcolorclick} />
-                    {backcolorclick ? <PopoverB><Cover onClick={Buttonclose}></Cover><ChromePicker color={backcolor} onChange={changebackcolorh} /></PopoverB> : <></>}
+                    {backcolorclick ? <PopoverB><Cover onClick={BackButtonclose}></Cover><ChromePicker color={backcolor} onChange={changebackcolorh} /></PopoverB> : <></>}
+                    <input type="file" style={{display:'none'}} id="hiddenbackbutton" class="upload-backhidden" onChange={changeBackImage}/>
+                    <TitleImageInput id="upload-backname" value="파일선택" disabled="disabled" />
+                    <TitleImageButton onClick={backhandleClick}>업로드</TitleImageButton>
                 </Backcolor>
 
                 <TitleImage>
@@ -207,6 +236,7 @@ const Cover = styled.div`
 
 const Rgbbutton = styled.div`
     margin-left:20px;
+    margin-right:20px;
     width:30px;
     height:30px;
     border:2px solid black;

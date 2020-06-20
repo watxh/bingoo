@@ -6,6 +6,9 @@ const Bingobox = styled.div`
     height:53px;
     margin:3px;
     background-color:white;
+    ${({ backImage }) => backImage && css`
+        background-color:rgba(255,255,255,0.8);
+  ` }
     border-radius:4px;
     font-size:11px;
     font-family: 'Noto Sans KR', sans-serif;

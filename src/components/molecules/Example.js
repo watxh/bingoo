@@ -1,31 +1,45 @@
 import styled, { css } from "styled-components";
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import Bingobox from "../atoms/Bingobox"
 import download from "downloadjs"
 import * as htmlToImage from 'html-to-image';
 
 const Example = ({
-    title = { title },
-    subtitle = { subtitle },
-    backcolor = { backcolor },
-    titlecolor = { titlecolor },
-    subtitlecolor = { subtitlecolor },
-    bingoarray = { bingoarray },
-    changerownum = { changerownum },
-    changecolnum = { changecolnum }
+    title,
+    subtitle,
+    backcolor,
+    titlecolor,
+    subtitlecolor,
+    bingoarray,
+    changerownum,
+    changecolnum,
+    backImage,
 }) => {
+
+    const [backImageURL, setBackImageURL] = useState("");
+
+    useEffect(() => {
+        let reader = new FileReader();
+        if (backImage) {
+            reader.onloadend = () => {
+                setBackImageURL(reader.result);
+            }
+            reader.readAsDataURL(backImage);
+        }
+    }, [backImage])
 
     return (
 
         <All>
-            <Exbox backcolor={backcolor}>
+            {backImageURL && <BackImage src={backImageURL}></BackImage>}
+            <Exbox backcolor={backcolor} backImage={backImage}>
                 <Title titlecolor={titlecolor}>{title}</Title>
                 <Subtitle subtitlecolor={subtitlecolor}>{subtitle}</Subtitle>
                 <Bingoboxsection>
-                    {function() {
-                        let rows=[];
-                        for(let i = 0; i < 25; i++) {
-                            rows.push(<Bingobox onClick={function(){changerownum(i%5+1);changecolnum(parseInt(i/5)+1)}}>{bingoarray[i].word}</Bingobox>);
+                    {function () {
+                        let rows = [];
+                        for (let i = 0; i < 25; i++) {
+                            rows.push(<Bingobox onClick={function () { changerownum(i % 5 + 1); changecolnum(parseInt(i / 5) + 1) }} backImage={backImage}>{bingoarray[i].word}</Bingobox>);
                         }
                         return rows;
                     }()}
@@ -45,9 +59,12 @@ const Exbox = styled.div`
     position:absolute;
     left:25%;
     top:50%;
-    background-color:#000000;
+    background-color:rgba(0,0,0,1);
     ${({ backcolor }) => backcolor && css`
         background-color:${backcolor.hex};
+  ` }
+    ${({ backImage }) => backImage && css`
+        background-color:rgba(0,0,0,0);
   ` }
     width:375px;
     height:640px;
@@ -56,6 +73,19 @@ const Exbox = styled.div`
     text-align:center;
     align-items:center;
     border-radius:10px;
+    z-index:0;
+`;
+
+const BackImage = styled.img`
+    position:absolute;
+    left:25%;
+    top:50%;
+    width:375px;
+    height:640px;
+    margin-left:-187px;
+    margin-top:-285px;
+    border-radius:10px;
+    z-index:-1;
 `;
 
 const Title = styled.div`
@@ -63,6 +93,7 @@ const Title = styled.div`
     font-size:40px;
     font-family: 'Jua', sans-serif;
     color:#ffffff;
+    z-index:1;
     ${({ titlecolor }) => titlecolor && css`
         color:${titlecolor.hex};
   ` }
@@ -73,6 +104,7 @@ const Subtitle = styled.div`
     font-size:30px;
     font-family: 'Nanum Pen Script', cursive;
     color:#ffffff;
+    z-index:1;
     ${({ subtitlecolor }) => subtitlecolor && css`
         color:${subtitlecolor.hex};
   ` }
@@ -88,6 +120,7 @@ const Bingoboxsection = styled.div`
     display:flex;
     flex-direction:row;
     flex-wrap: wrap;
+    z-index:1;
 `;
 
 export default Example;
