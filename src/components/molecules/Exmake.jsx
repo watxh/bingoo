@@ -139,6 +139,11 @@ const Exmake = ({
         }
     }, [backImage])
 
+    useEffect(()=>{
+        const x = document.getElementById("content-input");
+        x.focus();
+    },[rownum, columnnum])
+
     return (
         <All>
             <Infosection>
@@ -194,7 +199,7 @@ const Exmake = ({
 
                 <Positioncontents>
                     <Positioncontentsname>내용</Positioncontentsname>
-                    <Titleinput placeholder="내용을 입력하세요" type="text" value={contents} onChange={changecontents} />
+                    <Titleinput placeholder="내용을 입력하세요" type="text" value={contents} onChange={changecontents} id="content-input"/>
                 </Positioncontents>
 
                 <Savesection>

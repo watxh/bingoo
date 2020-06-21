@@ -30,6 +30,12 @@ const Example = ({
         }
     }, [backImage])
 
+    const boxClicked = (i) =>{
+        changerownum(i % 5 + 1); 
+        changecolnum(parseInt(i / 5) + 1);
+        
+    }
+
     return (
 
         <All>
@@ -43,7 +49,7 @@ const Example = ({
                         for (let i = 0; i < 25; i++) {
                             rows.push(
                                 <Bingobox
-                                    onClick={function () { changerownum(i % 5 + 1); changecolnum(parseInt(i / 5) + 1) }}
+                                    onClick={()=>{boxClicked(i)}}
                                     backImage={backImage}
                                     clicked={rownum-1+(columnnum-1)*5 === i
                                         ?1

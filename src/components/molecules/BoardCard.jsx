@@ -82,6 +82,7 @@ const Container = styled.div`
     margin-bottom:50px;
     border-radius:10px;
     box-shadow:5px 5px 7px #C6C6C6;
+    
 `;
 
 const MainImage = styled.div`

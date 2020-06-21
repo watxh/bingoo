@@ -88,8 +88,8 @@ const CardList = styled.div`
     display:flex;
     flex-direction:row;
     flex-wrap:wrap;
-    justify-content:left;
-    width:1500px;
+    justify-content:center;
+    width:100%;
 `
 
 const TopLine = styled.div`

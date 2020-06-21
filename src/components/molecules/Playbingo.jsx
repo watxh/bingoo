@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import Bingobox from "../atoms/Bingobox"
 import ReactDOM from "react-dom"
 
@@ -10,6 +10,8 @@ const Playbingo = (
 
     const [circled, setCircled] = useState([]);
     const [bingoLine, setBingoLine] = useState([]);
+
+    const [isBackImage, setIsBackImage] = useState(0);
 
     const CreateCircle = (word, num) => {
         ReactDOM.render((<>{word}<Redcircle src="/data/image/icon/redcircle.png" /></>), bb[num]);
@@ -120,9 +122,18 @@ const Playbingo = (
         }
     }
 
+    useEffect(() => {
+        if(data.data.backcolor==="null" || data.data.backcolor===undefined){
+            setIsBackImage(1);
+        }else{
+            setIsBackImage(0);
+        }
+    }, []);
+
     return (
         <>
-            <Exbox backcolor={data.data.backcolor}>
+            {isBackImage===1 ? <BackImage src={data.data.backimageURL}/> :<></>}
+            <Exbox backcolor={data.data.backcolor} backImage={isBackImage}>
                 <Title titlecolor={data.data.titlecolor}>{data.data.title}</Title>
                 <Subtitle subtitlecolor={data.data.subtitlecolor}>{data.data.subtitle}</Subtitle>
                 <Bingoboxsection>
@@ -130,7 +141,7 @@ const Playbingo = (
                         let rows = [];
                         for (let i = 0; i < 25; i++) {
                             rows.push(
-                                <Bingobox className="bingoBox" onClick={(() => { CreateCircle(data.data.bingoarray[i], i) })}>
+                                <Bingobox className="bingoBox" onClick={(() => { CreateCircle(data.data.bingoarray[i], i) })} backImage={isBackImage}>
                                     {data.data.bingoarray[i]}
                                 </Bingobox>)
                         }
@@ -152,14 +163,23 @@ const Container = styled.div`
     width:100%;
 `
 
+const BackImage = styled.img`
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:375px;
+    height:640px;
+    margin-left:-187px;
+    margin-top:-285px;
+    border-radius:10px;
+    z-index:-1;
+`;
+
 const Exbox = styled.div`
     position:absolute;
     left:50%;
     top:50%;
-    background-color:#000000;
-    ${({ backcolor }) => backcolor && css`
-        background-color:${backcolor};
-  ` }
+    background-color:rgba(0,0,0,1);
     width:375px;
     height:640px;
     margin-left:-187px;
@@ -167,6 +187,13 @@ const Exbox = styled.div`
     text-align:center;
     align-items:center;
     border-radius:10px;
+    z-index:0;
+    ${({ backcolor }) => backcolor && css`
+        background-color:${backcolor};
+    ` }
+    ${({ backImage }) => backImage && css`
+        background-color:rgba(0,0,0,0);
+    ` }
 `;
 
 const Title = styled.div`
@@ -177,6 +204,7 @@ const Title = styled.div`
     ${({ titlecolor }) => titlecolor && css`
         color:${titlecolor};
   ` }
+    z-index:1;
 `
 
 const Subtitle = styled.div`
@@ -187,6 +215,7 @@ const Subtitle = styled.div`
     ${({ subtitlecolor }) => subtitlecolor && css`
         color:${subtitlecolor.hex};
   ` }
+    z-index:1;
 `
 
 const Bingoboxsection = styled.div`
@@ -199,6 +228,7 @@ const Bingoboxsection = styled.div`
     display:flex;
     flex-direction:row;
     flex-wrap: wrap;
+    z-index:1;
 `;
 
 const Redcircle = styled.img`
