@@ -169,7 +169,7 @@ const Exmake = ({
                     <Rgbbutton backcolor={backcolor} onClick={Backcolorclick} />
                     {backcolorclick ? <PopoverB><Cover onClick={BackButtonclose}></Cover><ChromePicker color={backcolor} onChange={changebackcolorh} /></PopoverB> : <></>}
                     <input type="file" style={{display:'none'}} id="hiddenbackbutton" class="upload-backhidden" onChange={changeBackImage}/>
-                    <TitleImageInput id="upload-backname" value="파일선택" disabled="disabled" />
+                    <TitleImageInput id="upload-backname" placeholder="파일선택" disabled="disabled" />
                     <TitleImageButton onClick={backhandleClick}>업로드</TitleImageButton>
                 </Backcolor>
 
@@ -178,7 +178,7 @@ const Exmake = ({
                         대표 사진
                     </TitleImageText>
                     <input type="file" style={{display:'none'}} id="hiddenbutton" class="upload-hidden" onChange={changeImage}/>
-                    <TitleImageInput id="upload-name" value="파일선택" disabled="disabled" />
+                    <TitleImageInput id="upload-name" placeholder="파일선택" disabled="disabled" />
                     <TitleImageButton onClick={handleClick}>업로드</TitleImageButton>
                 </TitleImage>
             </Infosection>
@@ -294,10 +294,6 @@ const Savesection = styled.div`
 `;
 
 const Savebutton = styled.button`
-    @font-face {
-        font-family: DoHyeon;
-        src: url('/data/font/DoHyeon-Regular.ttf');
-    }
     width:120px;
     height:43px;
     margin-top:130px;
@@ -307,7 +303,7 @@ const Savebutton = styled.button`
     border:0px;
     border-radius:7px;
     font-size:21px;
-    font-family: 'DoHyeon';
+    font-family: 'Do Hyeon';
     text-align:right;
     padding-right:10px;
 `;

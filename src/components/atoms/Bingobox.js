@@ -16,6 +16,9 @@ const Bingobox = styled.div`
     align-items:center;
     overflow:hidden;
     padding:6px;
+    ${({ clicked }) => clicked && css`
+        box-shadow: 0 0 0 2px red inset; 
+  ` }
 `;
 
 export default Bingobox;

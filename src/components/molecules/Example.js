@@ -14,6 +14,8 @@ const Example = ({
     changerownum,
     changecolnum,
     backImage,
+    rownum,
+    columnnum,
 }) => {
 
     const [backImageURL, setBackImageURL] = useState("");
@@ -39,7 +41,16 @@ const Example = ({
                     {function () {
                         let rows = [];
                         for (let i = 0; i < 25; i++) {
-                            rows.push(<Bingobox onClick={function () { changerownum(i % 5 + 1); changecolnum(parseInt(i / 5) + 1) }} backImage={backImage}>{bingoarray[i].word}</Bingobox>);
+                            rows.push(
+                                <Bingobox
+                                    onClick={function () { changerownum(i % 5 + 1); changecolnum(parseInt(i / 5) + 1) }}
+                                    backImage={backImage}
+                                    clicked={rownum-1+(columnnum-1)*5 === i
+                                        ?1
+                                        :0
+                                    }>
+                                    {bingoarray[i].word}
+                                </Bingobox>);
                         }
                         return rows;
                     }()}

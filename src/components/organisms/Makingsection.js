@@ -164,6 +164,8 @@ const Makingsection = () => {
                     changerownum={changerownum}
                     changecolnum={changecolnum}
                     backImage={backImage}
+                    rownum={rownum}
+                    columnnum={columnnum}
                     >
                 </Example>
             </div>
