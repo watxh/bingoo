@@ -199,7 +199,7 @@ const Exmake = ({
 
                 <Savesection>
                     <Saveimage src="/data/image/icon/download.png" />
-                    <Savebutton onClick={()=>{changesuccess(image)}}>저장하기</Savebutton>
+                    <Savebutton onClick={()=>{changesuccess(image, backImage)}}>저장하기</Savebutton>
                 </Savesection>
             </InfosectionB>
             </All>

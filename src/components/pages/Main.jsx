@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import Board from "../organisms/Board"
 import Topbar from "../organisms/Topbar"
+import { scryRenderedDOMComponentsWithTag } from "react-dom/test-utils";
 
 const Main = () =>{
 

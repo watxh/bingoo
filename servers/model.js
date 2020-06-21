@@ -15,6 +15,7 @@ var testSchema = mongoose.Schema({
     titlecolor:String,
     subtitlecolor:String,
     imageURL:String,
+    backimageURL:String,
     bingoarray:Array,
     like:Number,
     time:String,

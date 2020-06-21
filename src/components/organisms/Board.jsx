@@ -3,6 +3,8 @@ import React, { Component, useState, useEffect } from "react";
 import axios from 'axios';
 
 import BoardCard from "../molecules/BoardCard"
+import { toNamespacedPath } from "path";
+import { isDOMComponent } from "react-dom/test-utils";
 
 const Board = () => {
 
@@ -14,7 +16,7 @@ const Board = () => {
 
     useEffect(()=>{
         getList(1);
-    },[])
+    },[]) 
 
     const getList = async (e) => {
         var testarray = [];

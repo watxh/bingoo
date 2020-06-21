@@ -17,6 +17,7 @@ router.post('/b', function (req, res, next) {
         titlecolor: req.body.titlecolor,
         subtitlecolor: req.body.subtitlecolor,
         imageURL: req.body.imageURL,
+        backimageURL: req.body.backimageURL,
         bingoarray: req.body.bingoarray,
         like: req.body.like,
         time:moment().format(),

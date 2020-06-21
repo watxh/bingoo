@@ -73,8 +73,8 @@ const Makingsection = () => {
         setBackImage(e);
     }
 
-    const changesuccess = (e) =>{
-        imageStorage(e);
+    const changesuccess = (e, f) =>{
+        imageStorage(e, f);
     }
 
     function randomStr(m) {
@@ -85,7 +85,27 @@ const Makingsection = () => {
         return s;
     };
 
-    const imageStorage = async(e) => {
+    const imageStorage = async(e, f) => {
+        var backname = moment().format('YYYYMMDDHHmmss') + "_" + f.name;
+        const uploadTask2 = storage.ref(`backimages/${backname}`).put(f);
+        function test(titleurl) {
+            uploadTask2.on(
+                "state_changed",
+                snapshot=> {},
+                error => {
+                    console.log(error);
+                },
+                ()=>{
+                    storage
+                        .ref("backimages")
+                        .child(backname)
+                        .getDownloadURL()
+                        .then(url => {
+                            postdata(titleurl, url);
+                        })
+                }
+            )
+        }
         var name = moment().format('YYYYMMDDHHmmss') + "_" + e.name;
         const uploadTask = storage.ref(`images/${name}`).put(e);
         uploadTask.on(
@@ -100,23 +120,43 @@ const Makingsection = () => {
                     .child(name)
                     .getDownloadURL()
                     .then(url => {
-                        postdata(url);
+                        test(url);
                     })
             }
         )
     }
 
-    const postdata = async(url) =>{
+    const postdata = async(url, backurl) =>{
+        console.log(url);
         var id = "/" + randomStr(5);
-        const params = new URLSearchParams({
-            id,
-            title,
-            subtitle,
-            backcolor: (Object.entries(backcolor)[1][1]),
-            titlecolor: (Object.entries(titlecolor)[1][1]),
-            subtitlecolor: (Object.entries(subtitlecolor)[1][1]),
-            imageURL: url,
-        });
+        function sic() {
+            if(backcolor){
+                const params = new URLSearchParams({
+                    id,
+                    title,
+                    subtitle,
+                    backcolor: (Object.entries(backcolor)[1][1]),
+                    titlecolor: (Object.entries(titlecolor)[1][1]),
+                    subtitlecolor: (Object.entries(subtitlecolor)[1][1]),
+                    imageURL: url,
+                    backimageURL: null,
+                });
+                return params;
+            } else {
+                const params = new URLSearchParams({
+                    id,
+                    title,
+                    subtitle,
+                    backcolor: null,
+                    titlecolor: (Object.entries(titlecolor)[1][1]),
+                    subtitlecolor: (Object.entries(subtitlecolor)[1][1]),
+                    imageURL: url,
+                    backimageURL: backurl,
+                });
+                return params;
+            }
+        }
+        const params = sic();
 
         for(let i = 0; i < 25; i++){
             if(bingoarray[i].word != undefined){
