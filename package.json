@@ -22,6 +22,7 @@
     "react-scripts": "3.4.1",
     "styled-components": "^5.0.1"
   },
+  "type": "module",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -30,6 +31,11 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "resolutions": {
+    "is-promise": "2.1.0",
+    "run-async/is-promise": "2.1.0",
+    "memoizee/is-promise": "2.1.0"
   },
   "browserslist": {
     "production": [
