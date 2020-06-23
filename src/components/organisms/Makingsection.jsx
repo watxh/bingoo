@@ -29,7 +29,7 @@ const Makingsection = () => {
     const [rownum, setRownum] = useState("1");
     const [columnnum, setColumnnum] = useState("1");
 
-    const [like, setLike] = useState(4);
+    const [like, setLike] = useState(0);
 
     const [backImage, setBackImage] = useState(null);
 
@@ -86,25 +86,29 @@ const Makingsection = () => {
     };
 
     const imageStorage = async(e, f) => {
-        var backname = moment().format('YYYYMMDDHHmmss') + "_" + f.name;
-        const uploadTask2 = storage.ref(`backimages/${backname}`).put(f);
+        
+        
         function test(titleurl) {
-            uploadTask2.on(
-                "state_changed",
-                snapshot=> {},
-                error => {
-                    console.log(error);
-                },
-                ()=>{
-                    storage
-                        .ref("backimages")
-                        .child(backname)
-                        .getDownloadURL()
-                        .then(url => {
-                            postdata(titleurl, url);
-                        })
-                }
-            )
+            if (f) {
+                var backname = moment().format('YYYYMMDDHHmmss') + "_" + f.name;
+                const uploadTask2 = storage.ref(`backimages/${backname}`).put(f);
+                uploadTask2.on(
+                    "state_changed",
+                    snapshot => { },
+                    error => {
+                        console.log(error);
+                    },
+                    () => {
+                        storage
+                            .ref("backimages")
+                            .child(backname)
+                            .getDownloadURL()
+                            .then(url => {
+                                postdata(titleurl, url);
+                            })
+                    }
+                )
+            }
         }
         var name = moment().format('YYYYMMDDHHmmss') + "_" + e.name;
         const uploadTask = storage.ref(`images/${name}`).put(e);

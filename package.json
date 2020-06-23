@@ -26,9 +26,7 @@
     "styled-components": "^5.0.1"
   },
   "scripts": {
-    "start": "npm-run-all --parallel start:**",
-    "start:client": "react-scripts start",
-    "start:server": "node ./servers/server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
