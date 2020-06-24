@@ -14,7 +14,7 @@ const Routes = () =>{
     useEffect( async()=>{
         const a = await axios.get('https://bingoback.herokuapp.com/users/a');
         setData(a.data);
-    });
+    },[]);
 
     return(
         <Router>
