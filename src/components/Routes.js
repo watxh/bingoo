@@ -14,7 +14,7 @@ const Routes = () =>{
     useEffect( async()=>{
         const a = await axios.get('http://localhost:3001/users/a');
         setData(a.data);
-    },[])
+    },[])//asd
 
     return(
         <Router>
