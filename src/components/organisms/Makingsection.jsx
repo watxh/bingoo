@@ -177,7 +177,7 @@ const Makingsection = () => {
         params.append('titlecolor', (Object.entries(titlecolor)[1][1]));
         params.append('subtitlecolor', (Object.entries(subtitlecolor)[1][1]));*/
 
-        const a = await axios.post('http://localhost:3001/users/b', params);
+        const a = await axios.post('https://bingoback.herokuapp.com/users/b', params);
         console.log(a);
         setAddress(id);
 

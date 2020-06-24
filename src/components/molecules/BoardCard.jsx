@@ -33,7 +33,7 @@ const BoardCard = ({
         const params = new URLSearchParams({
             like:data.like+e,
         })
-        const a = await axios.patch(`http://localhost:3001/users/a/${data._id}`, params);
+        const a = await axios.patch(`https://bingoback.herokuapp.com/users/a/${data._id}`, params);
     }
 
     return (

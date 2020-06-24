@@ -20,7 +20,7 @@ const Board = () => {
 
     const getList = async (e) => {
         var testarray = [];
-        testarray = (await axios.get('http://localhost:3001/users/a')).data;
+        testarray = (await axios.get('https://bingoback.herokuapp.com/users/a')).data;
 
         function timesort(a, b) {
             if (a.time == b.time) { return 0 } return a.time > b.time ? -1 : 1;
