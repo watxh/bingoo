@@ -150,11 +150,6 @@ const Playbingo = (
                 </Bingoboxsection>
 
             </Exbox>
-            <Container>
-                <Completebutton onClick={FinishBingo}>
-                    완료
-                </Completebutton>
-            </Container>
         </>
     )
 }

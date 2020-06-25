@@ -98,7 +98,7 @@ const TopLine = styled.div`
     flex-direction:row;
     margin-left:30px;
     margin-bottom:50px;
-    margin-top:20px;
+    margin-top:85px;
 `
 
 const PopularButton = styled.div`
