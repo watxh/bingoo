@@ -38,7 +38,7 @@ const BoardCard = ({
 
     return (
     <Container>
-        <MainImage>
+        <MainImage onClick={PlayGame}>
             <TitleImage src={data.imageURL} width="260" height="310"></TitleImage>
         </MainImage>
         <UnderBox>
@@ -82,13 +82,13 @@ const Container = styled.div`
     margin-right:30px;
     margin-bottom:50px;
     border-radius:10px;
-    box-shadow:0px 2px 2px 0px #eeeeee;
+    box-shadow:0px 2px 4px 0px #dddddd;
 
     transition: all 0.3s;
 
     :hover{
-        box-shadow:0px 5px 8px 0px #dddddd;
-        transform:scale(1.005);
+        box-shadow:0px 6px 9px 0px #dddddd;
+        transform:scale(1.01);
     }
 `;
 

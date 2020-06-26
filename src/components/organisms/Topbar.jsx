@@ -54,6 +54,7 @@ const Logo = styled.div`
     height:65px;
     display:flex;
     flex-direction:row;
+    border-bottom:1px solid red;
 `;
 
 const Logot = styled.div`
@@ -62,7 +63,7 @@ const Logot = styled.div`
     margin-left:-5px;
     width: 65px;height: 0px;
     border-top: 32.5px solid red;
-    border-bottom: 32.5px solid red;
+    border-bottom: 33.5px solid red;
     border-right: 32.5px solid transparent; 
     border-left: 32.5px solid  red;
 `;
