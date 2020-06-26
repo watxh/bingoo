@@ -76,14 +76,20 @@ const HeartBig = keyframes`
 `
 
 const Container = styled.div`
-    width:260px;
-    height:310px;
-    margin-left:20px;
-    margin-right:20px;
+    width:240px;
+    height:290px;
+    margin-left:30px;
+    margin-right:30px;
     margin-bottom:50px;
     border-radius:10px;
-    box-shadow:5px 5px 7px #C6C6C6;
-    
+    box-shadow:0px 2px 2px 0px #eeeeee;
+
+    transition: all 0.3s;
+
+    :hover{
+        box-shadow:0px 5px 8px 0px #dddddd;
+        transform:scale(1.005);
+    }
 `;
 
 const MainImage = styled.div`
@@ -94,20 +100,18 @@ const MainImage = styled.div`
 
 const TitleImage = styled.img`
     border-radius:10px;
-    width:260px;
-    height:310px;
+    width:240px;
+    height:290px;
     position:absolute;
 `
 
 const UnderBox = styled.div`
     position:absolute;
-    width:260px;
-    height:55px;
-    background-color:rgba(255,255,255,0.83);
+    width:240px;
+    height:65px;
+    background-color:rgba(255,255,255);
     border-radius:0px 0px 10px 10px;
-    margin-top:255px;
-    -webkit-backdrop-filter:saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
+    margin-top:225px;
     
 `  
 
@@ -119,7 +123,7 @@ const TitleText = styled.div`
     font-family:"SC";
     font-size:18px;
     margin-left:12px;
-    margin-top:3px;
+    margin-top:8px;
 `;
 
 const SubtitleText = styled.div`
@@ -164,7 +168,7 @@ const PlayBox = styled.div`
     justify-content:right;
     position:relative;
     bottom: 40px;
-    margin-left:210px;
+    margin-left:195px;
 `;  
 
 const PlayButton = styled.img`

@@ -255,6 +255,7 @@ const Infosection = styled.div`
     height:300px;
     display:flex;
     flex-direction:column;
+    margin-top:65px;
 `;
 
 const InfosectionB = styled.div`

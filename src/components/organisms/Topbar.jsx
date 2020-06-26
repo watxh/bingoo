@@ -41,11 +41,11 @@ const Bar = styled.div`
     background-color:rgba(255,255,255,0.9);
     width: 100%;
     height: 65px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     z-index:30;
     position:fixed;
     -webkit-backdrop-filter:saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
+    border-bottom:solid 1px #dddddd;
 `;
 
 const Logo = styled.div`
