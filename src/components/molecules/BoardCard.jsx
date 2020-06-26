@@ -39,25 +39,26 @@ const BoardCard = ({
     return (
     <Container>
         <MainImage>
-            <img src={data.imageURL} width="160" height="190"></img>
+            <TitleImage src={data.imageURL} width="260" height="310"></TitleImage>
         </MainImage>
-        <TitleText>{data.title}</TitleText>
-        <SubtitleText>{data.subtitle}</SubtitleText>
-        <LikeBox>
+        <UnderBox>
+            <TitleText>{data.title}</TitleText>
+            <LikeBox>
             {press===0
-                ? <LikeImage src="/data/image/icon/Heart1.png" width="23" height="23" onClick={ChangeLike} press={press}></LikeImage>
-                : <LikeImage src="/data/image/icon/Heart2.png" width="23" height="23" onClick={ChangeLike} press={press}></LikeImage>
+                ? <LikeImage src="/data/image/icon/Heart1.png" width="20" height="20" onClick={ChangeLike} press={press}></LikeImage>
+                : <LikeImage src="/data/image/icon/Heart2.png" width="20" height="20" onClick={ChangeLike} press={press}></LikeImage>
             }
             <LikeText>
                 {press===1
                 ?SetComma(data.like+1)
                 :SetComma(data.like)
                 }
-                </LikeText>
-        </LikeBox>
-        <PlayBox>
-            <PlayButton onClick={PlayGame} src="/data/image/icon/play.png"></PlayButton>
-        </PlayBox>
+            </LikeText>
+            </LikeBox>
+            <PlayBox>
+                <PlayButton onClick={PlayGame} src="/data/image/icon/play.png"></PlayButton>
+            </PlayBox>
+        </UnderBox>
     </Container>
     )
 }
@@ -89,18 +90,36 @@ const MainImage = styled.div`
     width:100%;
     display:flex;
     justify-content:center;
-    margin-top:15px;
 `;
+
+const TitleImage = styled.img`
+    border-radius:10px;
+    width:260px;
+    height:310px;
+    position:absolute;
+`
+
+const UnderBox = styled.div`
+    position:absolute;
+    width:260px;
+    height:55px;
+    background-color:rgba(255,255,255,0.83);
+    border-radius:0px 0px 10px 10px;
+    margin-top:255px;
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    
+`  
 
 const TitleText = styled.div`
     @font-face {
-        font-family: DoHyeon;
-        src: url('/data/font/DoHyeon-Regular.ttf');
+        font-family: SC;
+        src: url('/data/font/SCDream6.otf');
     }
-    font-family:"DoHyeon";
-    font-size:22px;
-    margin-left:30px;
-    margin-top:16px;
+    font-family:"SC";
+    font-size:18px;
+    margin-left:12px;
+    margin-top:3px;
 `;
 
 const SubtitleText = styled.div`
@@ -120,12 +139,12 @@ const SubtitleText = styled.div`
 `;
 
 const LikeBox = styled.div`
-    margin-top:8px;
     display:flex;
     flex-direction:row;
-    margin-left:10px;
+    margin-left:12px;
     line-height:19px;
     z-index:1;
+    margin-top:2px;
 `;
 
 const LikeText = styled.div`
@@ -144,7 +163,7 @@ const PlayBox = styled.div`
     display:flex;
     justify-content:right;
     position:relative;
-    bottom:35px;
+    bottom: 40px;
     margin-left:210px;
 `;  
 
