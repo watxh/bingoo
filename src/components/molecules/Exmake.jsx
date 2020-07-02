@@ -263,6 +263,7 @@ const InfosectionB = styled.div`
     height:100%;
     display:flex;
     flex-direction:column;
+    margin-top:30px;
 `;
 
 const Sectionname = styled.div`
@@ -367,6 +368,7 @@ const Titleinput = styled.input`
 
 const Titlename = styled.div`
     font-size:20px;
+    margin-left:20px;
 `
 
 const Subtitle = styled.div`
@@ -381,6 +383,7 @@ const Subtitle = styled.div`
 
 const Subtitlename = styled.div`
     font-size:20px;
+    margin-left:20px;
 `
 
 const Subtitleinput = styled.input`
@@ -413,10 +416,11 @@ const Backcolor = styled.div`
 const Backcolorname = styled.div`
     font-size:20px;
     font-family: 'Handon3gyeopsal600g';
+    margin-left:20px;
 `
 
 const TitleImage = styled.div`
-    margin-top:20px;
+    margin-top:30px;
     margin-left:10px;
     display:flex;
     flex-direction:row;
