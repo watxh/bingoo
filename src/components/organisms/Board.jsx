@@ -5,21 +5,23 @@ import axios from 'axios';
 import BoardCard from "../molecules/BoardCard"
 import { toNamespacedPath } from "path";
 import { isDOMComponent } from "react-dom/test-utils";
+import SkeletonCard from "../molecules/SkeletonCard";
 
 const Board = () => {
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
 
     const [sort, setSort] = useState(1);
 
     const [search, setSearch] = useState("");
 
-    useEffect(()=>{
+    useEffect(() => {
         getList(1);
-    },[]) 
+    }, [])
 
     const getList = async (e) => {
         var testarray = [];
+        setData(null);
         testarray = (await axios.get('https://bingoback.herokuapp.com/users/a')).data;
 
         function timesort(a, b) {
@@ -28,9 +30,9 @@ const Board = () => {
         function popularsort(a, b) {
             if (a.like == b.like) { return 0 } return a.like > b.like ? -1 : 1;
         }
-        if(e) testarray.sort(popularsort);
+        if (e) testarray.sort(popularsort);
         else testarray.sort(timesort);
-        
+
         let len = testarray.length;
         //console.log(testarray[0].time < testarray[1].time);
         if (search !== "") {
@@ -69,9 +71,22 @@ const Board = () => {
                 <SearchButton>검색</SearchButton>
             </TopLine>
             <CardList>
-                {data.map((data) => (
-                    <BoardCard data={data}></BoardCard>
-                ))}
+                {data !== null
+                    ? <>{data.map((data) => (
+                        <BoardCard data={data}></BoardCard>
+                    ))} </>
+                    : <>{function () {
+                        let rows = [];
+                        for(var i = 0; i < 25; i++){
+                            rows.push(
+                                <SkeletonCard/>
+                            );
+                        }
+                        return rows;
+                    }()}</>
+                }
+
+
             </CardList>
         </Container>
     )
