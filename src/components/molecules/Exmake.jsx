@@ -207,7 +207,7 @@ const Exmake = ({
                     <Savebutton onClick={()=>{changesuccess(image, backImage)}}>저장하기</Savebutton>
                 </Savesection>
             </InfosectionB>
-            </All>
+        </All>
     );
 }
 
@@ -277,7 +277,7 @@ const Insection = styled.div`
     top:0px;
     width:100%;
     height:60px;
-    border-bottom:2px solid;
+    border-bottom:2px solid #767676;
     text-align:left;
     line-height:60px;
 `
@@ -287,8 +287,8 @@ const InsectionB = styled.div`
     top:20px;
     width:100%;
     height:60px;
-    border-bottom:2px solid;
-    border-top:2px solid;
+    border-bottom:2px solid #767676;
+    border-top:2px solid #767676;
     text-align:left;
     line-height:60px;
 `
@@ -303,7 +303,7 @@ const Savesection = styled.div`
 const Savebutton = styled.button`
     width:120px;
     height:43px;
-    margin-top:130px;
+    margin-top:100px;
     margin-right:50px;
     background-color:#0037B6;
     color:white;

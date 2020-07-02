@@ -68,13 +68,13 @@ const Example = ({
 }
 
 const All = styled.div`
-    width:50%;
+    width:73%;
     height:100%;
 `;
 
 const Exbox = styled.div`
     position:absolute;
-    left:25%;
+    left:35%;
     top:50%;
     background-color:rgba(0,0,0,1);
     ${({ backcolor }) => backcolor && css`

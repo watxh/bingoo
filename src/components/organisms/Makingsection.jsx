@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Example from "../molecules/Example"
 import Exmake from "../molecules/Exmake"
+import Exmake2 from "../molecules/Exmake2"
 import Success from "../molecules/Success"
 
 import download from "downloadjs"
@@ -197,24 +198,22 @@ const Makingsection = () => {
 
     return (
         <>
-            <div>
-                <Example
-                    title={title}
-                    subtitle={subtitle}
-                    backcolor={backcolor}
-                    titlecolor={titlecolor}
-                    subtitlecolor={subtitlecolor}
-                    bingoarray={bingoarray}
-                    changerownum={changerownum}
-                    changecolnum={changecolnum}
-                    backImage={backImage}
-                    rownum={rownum}
-                    columnnum={columnnum}
-                    >
-                </Example>
-            </div>
+            <Example
+                title={title}
+                subtitle={subtitle}
+                backcolor={backcolor}
+                titlecolor={titlecolor}
+                subtitlecolor={subtitlecolor}
+                bingoarray={bingoarray}
+                changerownum={changerownum}
+                changecolnum={changecolnum}
+                backImage={backImage}
+                rownum={rownum}
+                columnnum={columnnum}
+                >
+            </Example>
             <Centerline></Centerline>
-            <Exmake
+            <Exmake2
                 changetitle={changetitle}
                 changesubtitle={changesubtitle}
                 changebackcolor={changebackcolor}
@@ -234,10 +233,10 @@ const Makingsection = () => {
 
 const Centerline = styled.div`
     position:fixed;
-    width:2.5px;
+    width:1px;
     height:100%;
-    background-color:black;
-    left:50%;
+    background-color:#555555;
+    left:73%;
 `;
 
 export default Makingsection;
