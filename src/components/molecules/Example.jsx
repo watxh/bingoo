@@ -70,6 +70,8 @@ const Example = ({
 const All = styled.div`
     width:73%;
     height:100%;
+    position:fixed;
+    left:150px;
 `;
 
 const Exbox = styled.div`

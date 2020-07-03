@@ -48,7 +48,7 @@ const Exmake2 = ({
         setTitlecolorclick(0);
         setSubtitlecolorclick(0);
         setBackcolorclick(0);
-        if(e.target.value) {
+        if (e) {
             changebackimage(null);
         }
     }
@@ -82,16 +82,47 @@ const Exmake2 = ({
         button.click();
     };
 
+    const changeImage = (e) => {
+        setImage(e.target.files[0]);
+    }
+
+    const handleClick = event => {
+        var button = document.getElementById('hiddenbutton')
+        button.click();
+    };
+
+    const Changetitle = (e) => {
+        setTitle(e.target.value);
+        changetitle(e.target.value);
+    }
+
+    const Changesubtitle = (e) => {
+        setSubtitle(e.target.value);
+        changesubtitle(e.target.value);
+    }
+
+    useEffect(() => {
+        if(image!==null){
+            document.getElementById("upload-name").value = image.name;
+        }
+    }, [image])
+
+    useEffect(()=>{
+        if(backImage!==null && backImage!== undefined){
+            document.getElementById("upload-backname").value = backImage.name;
+        }
+    }, [backImage])
+
     return (
         <All>
             <InfoBox>
                 <InfoTitle>
                     빙고 기본 정보
-                </InfoTitle>
+                </InfoTitle>    
                 <InfoText>
                     제목
                 </InfoText>
-                <InfoInput placeholder="제목을 입력하세요" />
+                <InfoInput placeholder="제목을 입력하세요" type="text" value={title} onChange={Changetitle}/>
                 <InfoColorBox>
                     <InfoColorPick backcolor={titlecolor} onClick={Titlecolorclick} />
                     {titlecolorclick ? <Popover><Cover onClick={Buttonclose}></Cover><ChromePicker color={titlecolor} onChange={changetitlecolorh} /></Popover> : <></>}
@@ -101,7 +132,7 @@ const Exmake2 = ({
                 <InfoText>
                     부제목
                 </InfoText>
-                <InfoInput placeholder="부제목을 입력하세요" />
+                <InfoInput placeholder="부제목을 입력하세요" type="text" value={subtitle} onChange={Changesubtitle}/>
                 <InfoColorBox>
                     <InfoColorPick backcolor={subtitlecolor} onClick={Subtitlecolorclick} />
                     {subtitlecolorclick ? <Popover><Cover onClick={Buttonclose}></Cover><ChromePicker color={subtitlecolor} onChange={changesubtitlecolorh} /></Popover> : <></>}
@@ -113,15 +144,38 @@ const Exmake2 = ({
                 </InfoText>
                 <TitleImageInput id="upload-backname" placeholder="파일선택" disabled="disabled" />
                 <TitleImageBox>
-                <TitleImageButton onClick={backhandleClick}>업로드</TitleImageButton>
-                <input type="file" style={{ display: 'none' }} id="hiddenbackbutton" class="upload-backhidden" onChange={changeBackImage} />
-                <InfoColorPick back="1" backcolor={backcolor} onClick={Backcolorclick} />
-                {backcolorclick ? <Popover><Cover onClick={()=>{Buttonclose(1)}}></Cover><ChromePicker color={backcolor} onChange={changebackcolorh} /></Popover> : <></>}
+                    <TitleImageButton onClick={backhandleClick}>업로드</TitleImageButton>
+                    <input type="file" style={{ display: 'none' }} id="hiddenbackbutton" class="upload-backhidden" onChange={changeBackImage} />
+                    <InfoColorPick back="1" backcolor={backcolor} onClick={Backcolorclick} />
+                    {backcolorclick ? <Popover><Cover onClick={() => { Buttonclose(1) }}></Cover><ChromePicker color={backcolor} onChange={changebackcolorh} /></Popover> : <></>}
+                </TitleImageBox>
+
+                <InfoText>
+                    대표 사진
+                </InfoText>
+                <TitleImageInput id="upload-name" placeholder="파일선택" disabled="disabled" />
+                <TitleImageBox>
+                    <TitleImageButton onClick={handleClick}>업로드</TitleImageButton>
+                    <input type="file" style={{ display: 'none' }} id="hiddenbutton" class="upload-hidden" onChange={changeImage} />
                 </TitleImageBox>
             </InfoBox>
             <PlusBox>
-                asd
+                <InfoTitle>
+                    빙고 기본 정보
+                </InfoTitle>
+                <PosBox>
+                <InfoText>
+                    내용
+                </InfoText>
+                <PosText>
+                    {rownum} X {columnnum}
+                </PosText>
+                </PosBox>
+                <InfoInput placeholder="내용을 입력하세요" />
             </PlusBox>
+            <Savesection>
+                <Savebutton onClick={() => { changesuccess(image, backImage) }}>저장하기</Savebutton>
+            </Savesection>
         </All>
     )
 }
@@ -131,7 +185,7 @@ const All = styled.div`
     left:73%;
     display:flex;
     flex-direction:column;
-    width:350px;
+    width:27%;
 `;
 
 const InfoBox = styled.div`
@@ -145,19 +199,18 @@ const InfoBox = styled.div`
 
 const InfoTitle = styled.div`
     font-family: 'Noto Sans KR', sans-serif;
-    font-size:23px;
+    font-size:20px;
     font-weight:900;
     color:#363636;
-    margin-bottom:28px;
+    margin-bottom:12px;
 `
 
 const InfoText = styled.div`
     font-family: 'Noto Sans KR', sans-serif;
-    font-size:16px;
+    font-size:14px;
     font-weight:700;
     color:#595959;
     margin-top:13px;
-    margin-bottom:15px;
 `
 
 const InfoInput = styled.input`
@@ -170,6 +223,7 @@ const InfoInput = styled.input`
     border-style:none;
     border-radius:120px;
     outline:none;
+    margin-top:15px;
 `
 
 const InfoColorBox = styled.div`
@@ -183,16 +237,16 @@ const InfoColor = styled.div`
     font-weight:700;
     color:#595959;
     margin-top:13px;
-    font-size:14px;
+    font-size:12px;
+    margin-right:10px;
 `
 
 const InfoColorPick = styled.div`
-    margin-left:20px;
     width:25px;
     height:25px;
     border-radius:70%;
     box-shadow:0px 2px 6px #D3D3D3;
-    margin-top:11px;
+    margin-top:10px;
     ${({ backcolor }) => backcolor && css`
         background-color:${backcolor.hex};
   ` }
@@ -212,13 +266,14 @@ const TitleImageButton = styled.button`
     border-style:none;
     outline:none;
     border-radius:20px;
-    height:40px;
+    height:38px;
     width:120px;
     background-color:#FF1B1B;
     color:white;
     font-family: 'Handon3gyeopsal600g';
     font-size:15px;
     box-shadow:0px 4px 6px #D3D3D3;
+    margin-right:20px;
 `
 const TitleImageInput = styled.input`
     background-color:transparent;
@@ -226,13 +281,29 @@ const TitleImageInput = styled.input`
     border-radius:10px;
     margin-right:10px;
     height:20px;
+    margin-bottom:10px;
 `
 
 const PlusBox = styled.div`
-    margin-top:65px;
     height:30%;
     padding-left:40px;
     padding-top:40px;
+    display:flex;
+    flex-direction:column;
+`
+
+const PosBox = styled.div`
+    display:flex;
+    flex-direction:row;
+`
+
+const PosText = styled.div`
+    font-size:20px;
+    margin-top:8px;
+    margin-left:10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:500;
+    color:#595959;
 `
 
 const Cover = styled.div`    
@@ -247,5 +318,31 @@ const Popover = styled.div`
     position:absolute;
     z-index:2;
 `
+
+const Savesection = styled.div`
+    position:relative;
+`;
+
+const Savebutton = styled.button`
+    width:100%;
+    height:75px;
+    margin-top:70px;
+    background-color:#FF1B1B;
+    color:white;
+    border:0px;
+    font-size:30px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:700;
+    text-align:center;
+    box-shadow:0px 3px 6px #D4D4D4;
+`;
+
+const Saveimage = styled.img`
+    width:18px;
+    height:auto;
+    position:relative;
+    left:35px;
+    top:5px;
+`;
 
 export default Exmake2;

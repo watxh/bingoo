@@ -22,7 +22,7 @@ const Makingsection = () => {
     const [titlecolor, setTitlecolor] = useState("#ffffff");
     const [subtitlecolor, setSubtitlecolor] = useState("#ffffff");
 
-    const [bingoarray, setBingoarray] = useState([{word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}, {word:""}]);
+    const [bingoarray, setBingoarray] = useState([{ word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }, { word: "" }]);
 
     const [address, setAddress] = useState("");
     const [issuccess, setIssuccess] = useState(0);
@@ -74,21 +74,21 @@ const Makingsection = () => {
         setBackImage(e);
     }
 
-    const changesuccess = (e, f) =>{
+    const changesuccess = (e, f) => {
         imageStorage(e, f);
     }
 
     function randomStr(m) {
-        var m = m || 9; 
+        var m = m || 9;
         var s = '';
         var r = 'abcdefghijklmnopqrstuvwxyz0123456789';
-        for (var i=0; i < m; i++) { s += r.charAt(Math.floor(Math.random()*r.length)); }
+        for (var i = 0; i < m; i++) { s += r.charAt(Math.floor(Math.random() * r.length)); }
         return s;
     };
 
-    const imageStorage = async(e, f) => {
-        
-        
+    const imageStorage = async (e, f) => {
+
+
         function test(titleurl) {
             if (f) {
                 var backname = moment().format('YYYYMMDDHHmmss') + "_" + f.name;
@@ -115,11 +115,11 @@ const Makingsection = () => {
         const uploadTask = storage.ref(`images/${name}`).put(e);
         uploadTask.on(
             "state_changed",
-            snapshot=> {},
+            snapshot => { },
             error => {
                 console.log(error);
             },
-            ()=>{
+            () => {
                 storage
                     .ref("images")
                     .child(name)
@@ -131,11 +131,11 @@ const Makingsection = () => {
         )
     }
 
-    const postdata = async(url, backurl) =>{
+    const postdata = async (url, backurl) => {
         console.log(url);
         var id = "/" + randomStr(5);
         function sic() {
-            if(backcolor){
+            if (backcolor) {
                 const params = new URLSearchParams({
                     id,
                     title,
@@ -163,8 +163,8 @@ const Makingsection = () => {
         }
         const params = sic();
 
-        for(let i = 0; i < 25; i++){
-            if(bingoarray[i].word != undefined){
+        for (let i = 0; i < 25; i++) {
+            if (bingoarray[i].word != undefined) {
                 params.append('bingoarray', bingoarray[i].word);
             }
         }
@@ -198,38 +198,44 @@ const Makingsection = () => {
 
     return (
         <>
-            <Example
-                title={title}
-                subtitle={subtitle}
-                backcolor={backcolor}
-                titlecolor={titlecolor}
-                subtitlecolor={subtitlecolor}
-                bingoarray={bingoarray}
-                changerownum={changerownum}
-                changecolnum={changecolnum}
-                backImage={backImage}
-                rownum={rownum}
-                columnnum={columnnum}
+            <Container>
+                <Example
+                    title={title}
+                    subtitle={subtitle}
+                    backcolor={backcolor}
+                    titlecolor={titlecolor}
+                    subtitlecolor={subtitlecolor}
+                    bingoarray={bingoarray}
+                    changerownum={changerownum}
+                    changecolnum={changecolnum}
+                    backImage={backImage}
+                    rownum={rownum}
+                    columnnum={columnnum}
                 >
-            </Example>
-            <Centerline></Centerline>
-            <Exmake2
-                changetitle={changetitle}
-                changesubtitle={changesubtitle}
-                changebackcolor={changebackcolor}
-                changetitlecolor={changetitlecolor}
-                changesubtitlecolor={changesubtitlecolor}
-                changebingoarray={changebingoarray}
-                changebackimage={changebackimage}
-                bingoarray={bingoarray}
-                changesuccess={changesuccess}
-                rownum={rownum}
-                columnnum={columnnum}
-            />
-            {issuccess===1 ? <Success props = {address}/>:<></>}
+                </Example>
+                <Centerline></Centerline>
+                <Exmake2
+                    changetitle={changetitle}
+                    changesubtitle={changesubtitle}
+                    changebackcolor={changebackcolor}
+                    changetitlecolor={changetitlecolor}
+                    changesubtitlecolor={changesubtitlecolor}
+                    changebingoarray={changebingoarray}
+                    changebackimage={changebackimage}
+                    bingoarray={bingoarray}
+                    changesuccess={changesuccess}
+                    rownum={rownum}
+                    columnnum={columnnum}
+                />
+                {issuccess === 1 ? <Success props={address} /> : <></>}
+            </Container>
         </>
     );
 }
+
+const Container = styled.div`
+    overflow-y:hidden;
+`
 
 const Centerline = styled.div`
     position:fixed;
