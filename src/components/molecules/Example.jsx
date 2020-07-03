@@ -97,7 +97,7 @@ const Exbox = styled.div`
 
 const BackImage = styled.img`
     position:absolute;
-    left:25%;
+    left:35%;
     top:50%;
     width:375px;
     height:640px;

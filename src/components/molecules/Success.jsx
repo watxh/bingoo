@@ -70,7 +70,7 @@ const Cover = styled.div`
 `;
 
 const Box = styled.div`
-    position:absolute;
+    position:fixed;
     left:50%;
     top:50%;
     width:500px;
