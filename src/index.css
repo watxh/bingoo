@@ -1,0 +1,25 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
+
+/* @font-face {
+  font-family: 'Baloo 2';
+  src: url("/data/font/Baloo2-SemiBold.ttf");
+} */
+
+@font-face {
+  font-family: DoHyeon;
+  src: url("/data/font/DoHyeon-Regular.ttf");
+}
+
+@font-face {
+  font-family: SC;
+  src: url("/data/font/SCDream6.otf");
+}
+
+@font-face {
+  font-family: "Handon3gyeopsal600g";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/Handon3gyeopsal600g.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}

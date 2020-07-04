@@ -93,7 +93,7 @@ const Wave = styled.div`
     width:100%;
     height:100px;
     background:url("/data/image/icon/wave.png");
-    animation: ${WaveUp} 20s both, ${Waveanim} 2s linear infinite;
+    animation: ${WaveUp} 10s both, ${Waveanim} 2s linear infinite;
 `
 
 const Wave2 = styled.div`
@@ -102,7 +102,7 @@ const Wave2 = styled.div`
     width:100%;
     height:100px;
     background:url("/data/image/icon/wave.png");
-    animation: ${WaveUp} 20s both, ${Waveanim2} 5s linear infinite;
+    animation: ${WaveUp} 10s both, ${Waveanim2} 5s linear infinite;
     opacity:0.7;
     bottom:10px;
 `
@@ -215,7 +215,7 @@ const Copybutton = styled.button`
     width:130px;
     height:40px;
     color:white;
-    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR';
     font-weight: 600;
     font-size:16px;
 `
@@ -228,7 +228,7 @@ const Startbutton = styled.button`
     width:130px;
     height:40px;
     color:white;
-    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR';
     font-weight: 600;
     font-size:16px;
 `

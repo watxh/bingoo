@@ -83,7 +83,7 @@ const Container = styled.div`
     margin-bottom:50px;
     border-radius:10px;
     box-shadow:0px 2px 4px 0px #dddddd;
-
+    cursor:pointer;
     transition: all 0.3s;
 
     :hover{
@@ -116,10 +116,6 @@ const UnderBox = styled.div`
 `  
 
 const TitleText = styled.div`
-    @font-face {
-        font-family: SC;
-        src: url('/data/font/SCDream6.otf');
-    }
     font-family:"SC";
     font-size:18px;
     margin-left:12px;
@@ -127,10 +123,6 @@ const TitleText = styled.div`
 `;
 
 const SubtitleText = styled.div`
-    @font-face {
-        font-family: DoHyeon;
-        src: url('/data/font/DoHyeon-Regular.ttf');
-    }
     font-family:"DoHyeon";
     font-size:16px;
     margin-left:30px;
@@ -165,7 +157,6 @@ const LikeImage = styled.img`
 
 const PlayBox = styled.div`
     display:flex;
-    justify-content:right;
     position:relative;
     bottom: 40px;
     margin-left:195px;

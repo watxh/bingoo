@@ -121,7 +121,7 @@ const PopularButton = styled.div`
     color:black;
     ${({ color }) => color && css`
         background-color: red;
-        color:white
+        color:white;
     `};
     width:80px;
     height:35px;
@@ -129,10 +129,10 @@ const PopularButton = styled.div`
     line-height:33px;
     text-align:center;
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight:900;
+    font-weight:700;
     font-size:17px;
     cursor:pointer;
-`;
+`
 
 const SearchInput = styled.input`
     width:680px;
@@ -144,7 +144,7 @@ const SearchInput = styled.input`
     margin-left:200px;
     padding-left:20px;
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight:900;
+    font-weight:700;
     font-size:15px;
 `
 
@@ -158,7 +158,7 @@ const SearchButton = styled.div`
     text-align:center;
     line-height:35px;
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight:900;
+    font-weight:700;
     font-size:18px;
     border-radius:12px;
 `

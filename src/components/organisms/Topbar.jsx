@@ -50,7 +50,7 @@ const Bar = styled.div`
 
 const Logo = styled.div`
     background-color: #ff1b1b;
-    width:135px;
+    width:145px;
     height:65px;
     display:flex;
     flex-direction:row;

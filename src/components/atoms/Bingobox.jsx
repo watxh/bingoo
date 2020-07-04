@@ -13,6 +13,7 @@ const Bingobox = styled.div`
     align-items:center;
     overflow:hidden;
     padding:6px;
+    cursor:pointer;
     ${({ backImage }) => backImage && css`
         background-color:rgba(255,255,255,0.8);
   ` }

@@ -3,7 +3,6 @@ import React, { Component, useState } from "react";
 import axios from 'axios';
 
 import Example from "../molecules/Example"
-import Exmake from "../molecules/Exmake"
 import Exmake2 from "../molecules/Exmake2"
 import Success from "../molecules/Success"
 
@@ -270,6 +269,7 @@ const Centerline = styled.div`
     height:100%;
     background-color:#555555;
     left:73%;
+    top:65px;
 `;
 
 export default Makingsection;
