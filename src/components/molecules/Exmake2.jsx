@@ -101,6 +101,20 @@ const Exmake2 = ({
         changesubtitle(e.target.value);
     }
 
+    const changecontents = (e) => {
+        setContents(e.target.value);
+        changebingoarray(e.target.value, (columnnum - 1) * 5 + (rownum - 1));
+    }
+
+    useEffect(() => {
+        if ((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).word == undefined) {
+            setContents("");
+        } else {
+            setContents((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).word);
+        }
+        
+    }, [rownum, columnnum])
+
     useEffect(() => {
         if(image!==null){
             document.getElementById("upload-name").value = image.name;
@@ -112,6 +126,11 @@ const Exmake2 = ({
             document.getElementById("upload-backname").value = backImage.name;
         }
     }, [backImage])
+
+    useEffect(()=>{
+        const x = document.getElementById("content-input");
+        x.focus();
+    },[rownum, columnnum])
 
     return (
         <All>
@@ -171,7 +190,7 @@ const Exmake2 = ({
                     {rownum} X {columnnum}
                 </PosText>
                 </PosBox>
-                <InfoInput placeholder="내용을 입력하세요" />
+                <PlusInput placeholder="내용을 입력하세요" type="text" value={contents} onChange={changecontents} id="content-input"/>
             </PlusBox>
             <Savesection>
                 <Savebutton onClick={() => { changesuccess(image, backImage) }}>저장하기</Savebutton>
@@ -306,6 +325,20 @@ const PosText = styled.div`
     color:#595959;
 `
 
+const PlusInput = styled.input`
+    font-family: 'Noto Sans KR', sans-serif;
+    color:#595959;
+    width:250px;
+    height:36px;
+    background-color:#F8F8F8;
+    padding-left:20px;
+    border-style:none;
+    border-radius:120px;
+    outline:none;
+    margin-top:15px;
+    margin-bottom:150px;
+`
+
 const Cover = styled.div`    
     position: fixed;
     top: 0px;
@@ -320,7 +353,9 @@ const Popover = styled.div`
 `
 
 const Savesection = styled.div`
-    position:relative;
+    position:fixed;
+    width:27%;
+    bottom:0px;
 `;
 
 const Savebutton = styled.button`
@@ -335,14 +370,6 @@ const Savebutton = styled.button`
     font-weight:700;
     text-align:center;
     box-shadow:0px 3px 6px #D4D4D4;
-`;
-
-const Saveimage = styled.img`
-    width:18px;
-    height:auto;
-    position:relative;
-    left:35px;
-    top:5px;
 `;
 
 export default Exmake2;

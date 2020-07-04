@@ -2,24 +2,25 @@ import styled, { css, keyframes } from "styled-components";
 import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 
-const Success = (
-    props
-) => {
+const Success = ({
+    props,
+    end
+}) => {
 
     const [address, setAddress] = useState("");
 
     useEffect(() => {
-        setAddress(props.props);
-    }, [])
+        setAddress(props);
+    }, [props])
 
-    const CopytoClip = () =>{
+    const CopytoClip = () => {
         const selBox = document.createElement('textarea');
         selBox.style.position = 'fixed';
         selBox.style.left = '0';
         selBox.style.top = '0';
         selBox.style.opacity = '0';
         selBox.value = address;
-        
+
         document.body.appendChild(selBox);
         selBox.focus();
         selBox.select();
@@ -27,26 +28,84 @@ const Success = (
         document.execCommand('copy');
         document.body.removeChild(selBox);
     }
-    
+
     const changeLocation = () => {
-        window.location.href=({address}.address);
+        window.location.href = ({ address }.address);
     }
 
     return (
         <>
             <Cover />
-            <Box>
-                <Successimage src="/data/image/icon/success.png" />
-                <Titletext>성공!</Titletext>
-                <Linktext>https://www.bingo.com{address}</Linktext>
-                <Buttonline>
-                    <Copybutton onClick={CopytoClip}>링크 복사하기</Copybutton>
-                    <Startbutton onClick={changeLocation}>빙고 하러가기</Startbutton>
-                </Buttonline>
-            </Box>
+                {end === "1"
+                    ?
+                    <Box>
+                        <InBox>
+                        <Successimage src="/data/image/icon/success.png" />
+                        <Titletext>성공!</Titletext>
+                        <Linktext>https://www.bingo.com{address}</Linktext>
+                        <Buttonline>
+                            <Copybutton onClick={CopytoClip}>링크 복사하기</Copybutton>
+                            <Startbutton onClick={changeLocation}>빙고 하러가기</Startbutton>
+                        </Buttonline>
+                        </InBox>
+                    </Box>
+                    :
+                    <Box two="1">
+                        <Wave id="testing" />
+                        <Wave2 id="testing2" />
+                    </Box>
+                }
         </>
     );
 }
+
+const Waveanim = keyframes`
+  0% {
+      background-position-x:0;
+  }
+  100% {
+      background-position-x:500px;
+  }
+`
+
+const Waveanim2 = keyframes`
+  0% {
+      background-position-x:0;
+  }
+  100% {
+      background-position-x:-500px;
+  }
+`
+
+const WaveUp = keyframes`
+    0% {
+        height:100px;
+    }
+    100% {
+        height:400px;
+    }
+`
+
+const Wave = styled.div`
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:100px;
+    background:url("/data/image/icon/wave.png");
+    animation: ${WaveUp} 20s both, ${Waveanim} 2s linear infinite;
+`
+
+const Wave2 = styled.div`
+    position:absolute;
+    left:0;
+    width:100%;
+    height:100px;
+    background:url("/data/image/icon/wave.png");
+    animation: ${WaveUp} 20s both, ${Waveanim2} 5s linear infinite;
+    opacity:0.7;
+    bottom:10px;
+`
 
 const Boxbig = keyframes`
   0% {
@@ -60,12 +119,22 @@ const Boxbig = keyframes`
   }
 `
 
+const Boxopacity = keyframes`
+  0% {
+      opacity:0;
+  }
+  100% {
+      opacity:1;
+  }
+`
+
 const Cover = styled.div`
     position:fixed;
     width:100%;
     height:100%;
     left:0px;
     top:0px;
+    z-index:30;
     background-color:rgba(0,0,0,0.3);
 `;
 
@@ -80,11 +149,31 @@ const Box = styled.div`
     background-color:white;
     border-radius:50px;
 
+    overflow:hidden;
+    z-index:35;
+
     display:flex;
     flex-direction:column;
     text-align:center;
-    animation: ${Boxbig} 0.8s;
+    
+    ${({ two }) => two && css`
+        background-color:#ff1b1b;
+        animation: ${Boxbig} 0.8s;
+  ` }
 `;
+
+const InBox = styled.div`
+    background-color:white;
+    position:relative;
+
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    
+    width:100%;
+    height:100%;
+    animation:${Boxopacity} 0.8s;
+`
 
 const Successimage = styled.img`
     display:flex;
@@ -116,7 +205,7 @@ const Buttonline = styled.div`
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-`;  
+`;
 
 const Copybutton = styled.button`
     margin-top:20px;

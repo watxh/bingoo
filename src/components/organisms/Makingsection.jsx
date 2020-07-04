@@ -87,8 +87,7 @@ const Makingsection = () => {
     };
 
     const imageStorage = async (e, f) => {
-
-
+        setIssuccess(2);
         function test(titleurl) {
             if (f) {
                 var backname = moment().format('YYYYMMDDHHmmss') + "_" + f.name;
@@ -132,7 +131,6 @@ const Makingsection = () => {
     }
 
     const postdata = async (url, backurl) => {
-        console.log(url);
         var id = "/" + randomStr(5);
         function sic() {
             if (backcolor) {
@@ -182,7 +180,36 @@ const Makingsection = () => {
         console.log(a);
         setAddress(id);
 
-        setIssuccess(1);
+        test();
+        setTimeout(function(){
+            setIssuccess(1);
+        },[700])
+    }
+
+    const test = () => {
+        var a = document.getElementById('testing'),
+            style = window.getComputedStyle(a),
+            height = style.getPropertyValue('height');
+
+        var b = document.getElementById('testing2'),
+            style = window.getComputedStyle(a),
+            height2 = style.getPropertyValue('height');
+
+        a.animate([
+            { height: height },
+            { height: '400px' }
+        ], {
+            duration: 800,
+            fill: "both",
+        });
+
+        b.animate([
+            { height: height2 },
+            { height: '400px' }
+        ], {
+            duration: 800,
+            fill: "both",
+        });
     }
 
     // const downloadimage = () => {
@@ -227,7 +254,7 @@ const Makingsection = () => {
                     rownum={rownum}
                     columnnum={columnnum}
                 />
-                {issuccess === 1 ? <Success props={address} /> : <></>}
+                {issuccess !== 0 ? <>{issuccess === 2 ? <Success></Success> : <Success props={address} end="1"></Success>}</> : <></>}
             </Container>
         </>
     );
