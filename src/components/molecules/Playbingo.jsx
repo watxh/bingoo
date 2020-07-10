@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import React, { Component, useState, useEffect } from "react";
 import Bingobox from "../atoms/Bingobox"
-import ReactDOM from "react-dom"
+import { render  } from "react-dom"
 
 const Playbingo = (
     data
@@ -13,10 +13,15 @@ const Playbingo = (
 
     const [isBackImage, setIsBackImage] = useState(0);
 
+    const [circlesrc, setCirclesrc] = useState([{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}])
+
     const CreateCircle = (word, num) => {
-        ReactDOM.render((<>{word}<Redcircle src="/data/image/icon/redcircle.png" /></>), bb[num]);
+        const testarray = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}];
+        testarray[num] = (<>{word}<Redcircle src="/data/image/icon/redcircle.gif"/></>);
+        setCircled(testarray);
+        render((testarray[num]), bb[num]);
         if (circled[num] == undefined || circled[num].now == 0) {
-            ReactDOM.render((<>{word}<Redcircle src="/data/image/icon/redcircle.png" /></>), bb[num]);
+            render((testarray[num]), bb[num]);
             setCircled(() => {
                 let newarray = [...circled];
                 newarray[num] = { now: "1" }
@@ -24,7 +29,7 @@ const Playbingo = (
             })
         }
         else {
-            ReactDOM.render((<>{word}</>), bb[num]);
+            render((<>{word}</>), bb[num]);
             setCircled(() => {
                 let newarray = [...circled];
                 newarray[num] = { now: "0" }
@@ -227,10 +232,10 @@ const Bingoboxsection = styled.div`
 `;
 
 const Redcircle = styled.img`
-    width:80px;
-    height:80px;
+    width:77px;
+    height:77px;
     position:absolute;
-    margin-left:-14px;
+    margin-left:-6px;
     margin-top:3px;
 `;
 
