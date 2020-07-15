@@ -112,36 +112,36 @@ const Exmake2 = ({
         } else {
             setContents((bingoarray[(columnnum - 1) * 5 + (rownum - 1)]).word);
         }
-        
+
     }, [rownum, columnnum])
 
     useEffect(() => {
-        if(image!==null){
+        if (image !== null) {
             document.getElementById("upload-name").value = image.name;
         }
     }, [image])
 
-    useEffect(()=>{
-        if(backImage!==null && backImage!== undefined){
+    useEffect(() => {
+        if (backImage !== null && backImage !== undefined) {
             document.getElementById("upload-backname").value = backImage.name;
         }
     }, [backImage])
 
-    useEffect(()=>{
+    useEffect(() => {
         const x = document.getElementById("content-input");
         x.focus();
-    },[rownum, columnnum])
+    }, [rownum, columnnum])
 
     return (
         <All>
             <InfoBox>
                 <InfoTitle>
                     빙고 기본 정보
-                </InfoTitle>    
+                </InfoTitle>
                 <InfoText>
                     제목
                 </InfoText>
-                <InfoInput placeholder="제목을 입력하세요" type="text" value={title} onChange={Changetitle}/>
+                <InfoInput placeholder="제목을 입력하세요" type="text" value={title} onChange={Changetitle} />
                 <InfoColorBox>
                     <InfoColorPick backcolor={titlecolor} onClick={Titlecolorclick} />
                     {titlecolorclick ? <Popover><Cover onClick={Buttonclose}></Cover><ChromePicker color={titlecolor} onChange={changetitlecolorh} /></Popover> : <></>}
@@ -151,7 +151,7 @@ const Exmake2 = ({
                 <InfoText>
                     부제목
                 </InfoText>
-                <InfoInput placeholder="부제목을 입력하세요" type="text" value={subtitle} onChange={Changesubtitle}/>
+                <InfoInput placeholder="부제목을 입력하세요" type="text" value={subtitle} onChange={Changesubtitle} />
                 <InfoColorBox>
                     <InfoColorPick backcolor={subtitlecolor} onClick={Subtitlecolorclick} />
                     {subtitlecolorclick ? <Popover><Cover onClick={Buttonclose}></Cover><ChromePicker color={subtitlecolor} onChange={changesubtitlecolorh} /></Popover> : <></>}
@@ -183,14 +183,14 @@ const Exmake2 = ({
                     빙고 기본 정보
                 </InfoTitle>
                 <PosBox>
-                <InfoText>
-                    내용
+                    <InfoText>
+                        내용
                 </InfoText>
-                <PosText>
-                    {rownum} X {columnnum}
-                </PosText>
+                    <PosText>
+                        {rownum} X {columnnum}
+                    </PosText>
                 </PosBox>
-                <PlusInput placeholder="내용을 입력하세요" type="text" value={contents} onChange={changecontents} id="content-input"/>
+                <PlusInput placeholder="내용을 입력하세요" type="text" value={contents} onChange={changecontents} id="content-input" />
             </PlusBox>
             <Savesection>
                 <Savebutton onClick={() => { changesuccess(image, backImage) }}>저장하기</Savebutton>

@@ -1,162 +1,162 @@
 import styled, { css } from "styled-components";
 import React, { Component, useState, useEffect } from "react";
 import Bingobox from "../atoms/Bingobox"
-import { render  } from "react-dom"
+import { render } from "react-dom"
 
 const Playbingo = (
-    data
+  data
 ) => {
-    const bb = document.getElementsByClassName("bingoBox");
+  const bb = document.getElementsByClassName("bingoBox");
 
-    const [circled, setCircled] = useState([]);
-    const [bingoLine, setBingoLine] = useState([]);
+  const [circled, setCircled] = useState([]);
+  const [bingoLine, setBingoLine] = useState([]);
 
-    const [isBackImage, setIsBackImage] = useState(0);
+  const [isBackImage, setIsBackImage] = useState(0);
 
-    const [circlesrc, setCirclesrc] = useState([{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}])
+  const [circlesrc, setCirclesrc] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}])
 
-    const CreateCircle = (word, num) => {
-        const testarray = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}];
-        testarray[num] = (<>{word}<Redcircle src="/data/image/icon/redcircle.gif"/></>);
-        setCircled(testarray);
-        render((testarray[num]), bb[num]);
-        if (circled[num] == undefined || circled[num].now == 0) {
-            render((testarray[num]), bb[num]);
-            setCircled(() => {
-                let newarray = [...circled];
-                newarray[num] = { now: "1" }
-                return newarray;
-            })
-        }
-        else {
-            render((<>{word}</>), bb[num]);
-            setCircled(() => {
-                let newarray = [...circled];
-                newarray[num] = { now: "0" }
-                return newarray;
-            })
-        }
-
-        CheckBingoX();
+  const CreateCircle = (word, num) => {
+    const testarray = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
+    testarray[num] = (<>{word}<Redcircle src="/data/image/icon/redcircle.gif" /></>);
+    setCircled(testarray);
+    render((testarray[num]), bb[num]);
+    if (circled[num] == undefined || circled[num].now == 0) {
+      render((testarray[num]), bb[num]);
+      setCircled(() => {
+        let newarray = [...circled];
+        newarray[num] = { now: "1" }
+        return newarray;
+      })
+    }
+    else {
+      render((<>{word}</>), bb[num]);
+      setCircled(() => {
+        let newarray = [...circled];
+        newarray[num] = { now: "0" }
+        return newarray;
+      })
     }
 
-    const CheckBingoX = () => {
+    CheckBingoX();
+  }
 
-        let num = 0;
+  const CheckBingoX = () => {
 
-        for (let i = 0; i < 5; i++) //가로줄 빙고 체크
-        {
-            for (let j = 0; j < 5; j++) {
-                if (circled[i * 5 + j] && circled[i * 5 + j].now === "1") {
-                    num++;
-                }
-            }
-            if (num === 5) {
-                if (!bingoLine[i]) {
-                    setBingoLine(() => {
-                        let newarray = [...bingoLine];
-                        newarray[i] = { now: "1" }
-                        return newarray;
-                    })
-                }
-            }
-            num = 0;
+    let num = 0;
+
+    for (let i = 0; i < 5; i++) //가로줄 빙고 체크
+    {
+      for (let j = 0; j < 5; j++) {
+        if (circled[i * 5 + j] && circled[i * 5 + j].now === "1") {
+          num++;
         }
-
-        let num2 = 0;
-
-        for (let i = 0; i < 5; i++) //세로줄 빙고 체크
-        {
-            for (let j = 0; j < 5; j++) {
-                if (circled[i + j * 5] && circled[i + j * 5].now === "1") {
-                    num2++;
-                }
-            }
-            if (num2 === 5) {
-                if (!bingoLine[i + 5]) {
-                    setBingoLine(() => {
-                        let newarray = [...bingoLine];
-                        newarray[i + 5] = { now: "1" }
-                        return newarray;
-                    })
-                }
-            }
-            num2 = 0;
+      }
+      if (num === 5) {
+        if (!bingoLine[i]) {
+          setBingoLine(() => {
+            let newarray = [...bingoLine];
+            newarray[i] = { now: "1" }
+            return newarray;
+          })
         }
-
-        let num3 = 0;
-
-        for (let i = 0; i < 25; i += 6) { //대각선 왼쪽 위에서 오른쪽 아래
-            if (circled[i] && circled[i].now === "1") {
-                num3++;
-            }
-        }
-        if (num3 === 5) {
-            if (!bingoLine[10]) {
-                setBingoLine(() => {
-                    let newarray = [...bingoLine];
-                    newarray[10] = { now: "1" }
-                    return newarray;
-                })
-            }
-        }
-
-        let num4 = 0;
-
-        for (let i = 4; i < 25; i += 4) { //대각선 오른쪽 위에서 왼쪽 아래
-            if (circled[i] && circled[i].now === "1") {
-                num4++;
-            }
-        }
-        if (num4 === 5) {
-            if (!bingoLine[11]) {
-                setBingoLine(() => {
-                    let newarray = [...bingoLine];
-                    newarray[11] = { now: "1" }
-                    return newarray;
-                })
-            }
-        }
+      }
+      num = 0;
     }
 
-    const FinishBingo = () => {
-        for(let i = 0; i < 25; i++) {
-            if(bingoLine[i] && bingoLine[i].now == 1){
-                console.log(i);
-            }
+    let num2 = 0;
+
+    for (let i = 0; i < 5; i++) //세로줄 빙고 체크
+    {
+      for (let j = 0; j < 5; j++) {
+        if (circled[i + j * 5] && circled[i + j * 5].now === "1") {
+          num2++;
         }
+      }
+      if (num2 === 5) {
+        if (!bingoLine[i + 5]) {
+          setBingoLine(() => {
+            let newarray = [...bingoLine];
+            newarray[i + 5] = { now: "1" }
+            return newarray;
+          })
+        }
+      }
+      num2 = 0;
     }
 
-    useEffect(() => {
-        if(data.data.backcolor==="null" || data.data.backcolor===undefined){
-            setIsBackImage(1);
-        }else{
-            setIsBackImage(0);
-        }
-    }, []);
+    let num3 = 0;
 
-    return (
-        <>
-            {isBackImage===1 ? <BackImage src={data.data.backimageURL}/> :<></>}
-            <Exbox backcolor={data.data.backcolor} backImage={isBackImage}>
-                <Title titlecolor={data.data.titlecolor}>{data.data.title}</Title>
-                <Subtitle subtitlecolor={data.data.subtitlecolor}>{data.data.subtitle}</Subtitle>
-                <Bingoboxsection>
-                    {function () {
-                        let rows = [];
-                        for (let i = 0; i < 25; i++) {
-                            rows.push(
-                                <Bingobox className="bingoBox" onClick={(() => { CreateCircle(data.data.bingoarray[i], i) })} backImage={isBackImage}>
-                                    {data.data.bingoarray[i]}
-                                </Bingobox>)
-                        }
-                        return rows;
-                    }()}
-                </Bingoboxsection>
+    for (let i = 0; i < 25; i += 6) { //대각선 왼쪽 위에서 오른쪽 아래
+      if (circled[i] && circled[i].now === "1") {
+        num3++;
+      }
+    }
+    if (num3 === 5) {
+      if (!bingoLine[10]) {
+        setBingoLine(() => {
+          let newarray = [...bingoLine];
+          newarray[10] = { now: "1" }
+          return newarray;
+        })
+      }
+    }
 
-            </Exbox>
-        </>
-    )
+    let num4 = 0;
+
+    for (let i = 4; i < 25; i += 4) { //대각선 오른쪽 위에서 왼쪽 아래
+      if (circled[i] && circled[i].now === "1") {
+        num4++;
+      }
+    }
+    if (num4 === 5) {
+      if (!bingoLine[11]) {
+        setBingoLine(() => {
+          let newarray = [...bingoLine];
+          newarray[11] = { now: "1" }
+          return newarray;
+        })
+      }
+    }
+  }
+
+  const FinishBingo = () => {
+    for (let i = 0; i < 25; i++) {
+      if (bingoLine[i] && bingoLine[i].now == 1) {
+        console.log(i);
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (data.data.backcolor === "null" || data.data.backcolor === undefined) {
+      setIsBackImage(1);
+    } else {
+      setIsBackImage(0);
+    }
+  }, []);
+
+  return (
+    <>
+      {isBackImage === 1 ? <BackImage src={data.data.backimageURL} /> : <></>}
+      <Exbox backcolor={data.data.backcolor} backImage={isBackImage}>
+        <Title titlecolor={data.data.titlecolor}>{data.data.title}</Title>
+        <Subtitle subtitlecolor={data.data.subtitlecolor}>{data.data.subtitle}</Subtitle>
+        <Bingoboxsection>
+          {function () {
+            let rows = [];
+            for (let i = 0; i < 25; i++) {
+              rows.push(
+                <Bingobox className="bingoBox" onClick={(() => { CreateCircle(data.data.bingoarray[i], i) })} backImage={isBackImage}>
+                  {data.data.bingoarray[i]}
+                </Bingobox>)
+            }
+            return rows;
+          }()}
+        </Bingoboxsection>
+
+      </Exbox>
+    </>
+  )
 }
 
 const Container = styled.div`
