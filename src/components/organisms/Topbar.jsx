@@ -18,7 +18,7 @@ const Topbar = () => {
     <Bar>
       <Barstyle>
         <Logo onClick={GoHome}>
-          <Name>bingo</Name>
+          <Name>bingoo</Name>
           <Logot />
         </Logo>
         <GotoBingo onClick={GoBingo}>빙고 하러가기</GotoBingo>
@@ -49,7 +49,7 @@ const Bar = styled.div`
 
 const Logo = styled.div`
   background-color: #ff1b1b;
-  width: 145px;
+  width: 185px;
   height: 65px;
   display: flex;
   flex-direction: row;

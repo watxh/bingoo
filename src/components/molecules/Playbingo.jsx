@@ -198,7 +198,13 @@ const Playbingo = (data) => {
 
   return (
     <>
-      {isBackImage === 1 ? <BackImage src={data.data.backimageURL} /> : <></>}
+      {isBackImage === 1 ? (
+        <PBackImage>
+          <BackImage src={data.data.backimageURL} />
+        </PBackImage>
+      ) : (
+        <></>
+      )}
       <Exbox backcolor={data.data.backcolor} backImage={isBackImage}>
         <Title titlecolor={data.data.titlecolor}>{data.data.title}</Title>
         <Subtitle subtitlecolor={data.data.subtitlecolor}>
@@ -233,15 +239,24 @@ const Container = styled.div`
 `;
 
 const BackImage = styled.img`
+  height: 640px;
+  width: auto;
+`;
+
+const PBackImage = styled.div`
+  overflow: hidden;
   position: absolute;
   left: 50%;
   top: 50%;
   width: 375px;
+  overflow: hidden;
   height: 640px;
   margin-left: -187px;
   margin-top: -285px;
   border-radius: 10px;
   z-index: -1;
+  display: flex;
+  justify-content: center;
 `;
 
 const Exbox = styled.div`

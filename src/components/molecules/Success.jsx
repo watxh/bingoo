@@ -15,7 +15,7 @@ const Success = ({ props, end }) => {
     selBox.style.left = "0";
     selBox.style.top = "0";
     selBox.style.opacity = "0";
-    selBox.value = address;
+    selBox.value = "https://bingo.watxh.vercel.app" + address;
 
     document.body.appendChild(selBox);
     selBox.focus();
@@ -37,7 +37,7 @@ const Success = ({ props, end }) => {
           <InBox>
             <Successimage src="/data/image/icon/success.png" />
             <Titletext>성공!</Titletext>
-            <Linktext>https://www.bingo.com{address}</Linktext>
+            <Linktext>https://bingo.watxh.vercel.app{address}</Linktext>
             <Buttonline>
               <Copybutton onClick={CopytoClip}>링크 복사하기</Copybutton>
               <Startbutton onClick={changeLocation}>빙고 하러가기</Startbutton>
